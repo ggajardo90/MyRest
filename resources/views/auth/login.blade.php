@@ -10,10 +10,10 @@
     <form action="/login" method="POST">
         @csrf
         username/email
-        <input type="text" name="username" id="">
+        <input type="text" name="username" id="" placeholder="username">
 
         password
-        <input type="password" name="password" id="">
+        <input type="password" name="password" id="" placeholder="password">
 
         <input type="submit" value="Login">
 
