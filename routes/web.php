@@ -1,8 +1,6 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/','HomeController@index')->middleware('auth');
-
-
-
-
-// Route::get('/','LoginController@home');
-
-// Route::get('/login','LoginController@login');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
-// Route::post('/register','RegisterController@store');
 
-// Route::post('/login','LoginController@store');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
