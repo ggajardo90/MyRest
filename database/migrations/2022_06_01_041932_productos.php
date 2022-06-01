@@ -14,13 +14,18 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id_categoria');
-            $table->string('nombre_categoria');
-            $table->string('descripcion_categoria');
-            $table->string('imagen_categoria');
+            $table->bigIncrements('id_producto');
+            $table->string('producto_nombre');
+            $table->decimal('producto_precio', 10, 2);
+            $table->string('producto_descripcion');
+            $table->string('producto_imagen');
             $table->boolean('activo')->default(0);
+
+            $table->bigInteger('id_categoria')->unsigned();
+            $table->foreign('id_categoria')->references('id_categoria')->on('categorias');
+            
             $table->timestamps();
         });
     }
