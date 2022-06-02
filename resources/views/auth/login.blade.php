@@ -29,7 +29,7 @@
                             <p class="card-description text-center">{{ __('Or Sign in with ') }}
                                 <strong>admin@material.com</strong> {{ __(' and the password ') }}<strong>secret</strong>
                             </p>
-                            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                            {{--<div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -46,20 +46,40 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </div>
                                 @endif
-                            </div>
-                            <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
+                            </div> --}}
+                            <!--UserName-->
+                            <div class="bmd-form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="material-icons">lock_outline</i>
+                                            <i class="material-icons">face</i>
                                         </span>
                                     </div>
-                                    <input type="password" name="password" id="password" class="form-control"
-                                        placeholder="{{ __('Password...') }}"
-                                        value="{{ !$errors->has('password') ? '' : '' }}" required required
-                                        autocomplete="current-password">
+                                    <input type="text" name="username" class="form-control"
+                                        placeholder="{{ __('Username or Email') }}" value="{{ old('username', '') }}" required
+                                        autocomplete="username" autofocus>
+                                    </div>
+                                    @if ($errors->has('username'))
+                                        <div id="username-error" class="error text-danger pl-3" for="username"
+                                            style="display: block;">
+                                            <strong>{{ $errors->first('username') }}</strong>
+                                        </div>
+                                    @endif
                                 </div>
-                                @if ($errors->has('password'))
+
+                                <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">lock_outline</i>
+                                            </span>
+                                        </div>
+                                        <input type="password" name="password" id="password" class="form-control"
+                                            placeholder="{{ __('Password...') }}"
+                                            value="{{ !$errors->has('password') ? '' : '' }}" required required
+                                            autocomplete="current-password">
+                                    </div>
+                                    @if ($errors->has('password'))
                                     <div id="password-error" class="error text-danger pl-3" for="password"
                                         style="display: block;">
                                         <strong>{{ $errors->first('password') }}</strong>
