@@ -4,8 +4,7 @@
 
 ```
 PHP 8.0
-COMPOSER ^2.0
-(Se recomienda instalar y utlizar valet)
+COMPOSER 2.0
 ```
 
 ### Instalación 🔧
@@ -28,7 +27,7 @@ cp .env.example .env
 ```
 1# php artisan migrate  
 2# php artisan db:seed
-3# phg artisan key:generate
+3# php artisan key:generate
 ```
 5.- Correr el proyecto desde la terminal _(ctrl + ñ en vscode)_ dentro del directorio
 ```
