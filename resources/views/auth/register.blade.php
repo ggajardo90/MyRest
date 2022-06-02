@@ -31,6 +31,7 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                     </div>
+
                                     <input type="text" name="name" class="form-control"
                                         placeholder="{{ __('Name...') }}" value="{{ old('name') }}" required
                                         autocomplete="name" autofocus>
@@ -41,6 +42,28 @@
                                     </div>
                                 @endif
                             </div>
+
+                            <!-- Username-->
+                            <div class="bmd-form-group{{ $errors->has('username') ? ' has-danger' : '' }} mt-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">fingerprint</i>
+                                        </span>
+                                    </div>
+
+                                    <input type="text" name="username" class="form-control"
+                                        placeholder="{{ __('Username...') }}" value="{{ old('username') }}" required
+                                        autocomplete="username" >
+                                </div>
+                                @if ($errors->has('username'))
+                                    <div id="username-error" class="error text-danger pl-3" for="username"
+                                        style="display: block;">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <!--finUsername-->
                             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
