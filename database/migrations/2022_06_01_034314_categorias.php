@@ -16,11 +16,11 @@ return new class extends Migration
         //
         Schema::create('categorias', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id_categoria');
-            $table->string('nombre_categoria');
-            $table->string('descripcion_categoria');
-            $table->string('imagen_categoria');
-            $table->boolean('activo')->default(0);
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('imagen');
+            $table->boolean('activa')->default(0);
             $table->timestamps();
         });
     }
