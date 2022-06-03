@@ -17,7 +17,7 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+      <!--<li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('img/laravel.svg') }}"></i>
           <p>{{ __('Laravel Examples') }}
@@ -40,26 +40,26 @@
             </li>
           </ul>
         </div>
+      </li>-->
+      <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
+        <a class="nav-link" href="{{route('categoria.index')}}">
+          <i class="material-icons">menu_book</i>
+            <p>{{ __('Categorias') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
+        <a class="nav-link" href="{{route('producto.index')}}">
+          <i class="material-icons">restaurant</i>
+          <p>{{ __('Productos') }}</p>
+        </a>
       </li>
       <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
         <a class="nav-link" href="{{route('users.index')}}">
-          <i class="material-icons">content_paste</i>
-            <p>Usuarios</p>
+          <i class="material-icons">group</i>
+          <p>{{ __('Usuarios') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="#">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('Typography') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="#">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
+      <!--<li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="#">
           <i class="material-icons">location_ons</i>
             <p>{{ __('Maps') }}</p>
@@ -76,7 +76,7 @@
           <i class="material-icons">language</i>
           <p>{{ __('RTL Support') }}</p>
         </a>
-      </li>
+      </li>-->
 
     </ul>
   </div>

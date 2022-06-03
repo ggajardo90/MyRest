@@ -22,7 +22,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users/create',[App\Http\Controllers\UserController::class,'create'])->name('users.create');
 Route::post('/users',[App\Http\Controllers\UserController::class,'store'])->name('users.store');
 
-Route::get('users',[App\Http\Controllers\UserController::class,'index'])->name('users.index');
+Route::get('users',[App\Http\Controllers\UserController::class,'index'])->name('users.index')->middleware('auth');
+Route::get('producto',[App\Http\Controllers\ProductoController::class,'index'])->name('producto.index')->middleware('auth');
+Route::get('categoria',[App\Http\Controllers\CategoriaController::class,'index'])->name('categoria.index')->middleware('auth');
 
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');

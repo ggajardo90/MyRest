@@ -11,8 +11,8 @@
                     @csrf
 
                     <div class="card card-login card-hidden mb-3">
-                        <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
+                        <div class="card-header card-header-warning  text-center">
+                            <h4 class="card-title text-dark"><strong>{{ __('Acceso') }}</strong></h4>
                             <div class="social-line">
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
                                     <i class="fa fa-facebook-square"></i>
@@ -26,27 +26,9 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-description text-center">{{ __('Or Sign in with ') }}
-                                <strong>admin@material.com</strong> {{ __(' and the password ') }}<strong>secret</strong>
+                            <p class="card-description text-center">{{ __('Puedes iniciar sesión con tu ') }}
+                                <strong>nombre de usuario o correo</strong> {{ __(' y tu contraseña') }}
                             </p>
-                            {{-- <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="material-icons">email</i>
-                                        </span>
-                                    </div>
-                                    <input type="email" name="email" class="form-control"
-                                        placeholder="{{ __('Email...') }}"
-                                        value="{{ old('email', '') }}" required autocomplete="email" autofocus >
-                                </div>
-                                @if ($errors->has('email'))
-                                    <div id="email-error" class="error text-danger pl-3" for="email"
-                                        style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </div>
-                                @endif
-                            </div> --}}
                             <!--UserName-->
                                 <div class="bmd-form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
                                     <div class="input-group">
@@ -56,7 +38,7 @@
                                             </span>
                                         </div>
                                         <input type="text" name="username" class="form-control"
-                                            placeholder="{{ __('Username or Email') }}" value="{{ old('username', '') }}" required
+                                            placeholder="{{ __('Nombre de usuario o correo') }}" value="{{ old('username', '') }}" required
                                             autocomplete="username" autofocus>
                                     </div>
                                     @if ($errors->has('username'))
@@ -75,7 +57,7 @@
                                             </span>
                                         </div>
                                         <input type="password" name="password" id="password" class="form-control"
-                                            placeholder="{{ __('Password...') }}"
+                                            placeholder="{{ __('Contraseña...') }}"
                                             value="{{ !$errors->has('password') ? '' : '' }}" required required
                                             autocomplete="current-password">
                                     </div>
@@ -89,7 +71,7 @@
                                 <div class="form-check mr-auto ml-3 mt-3">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" name="remember"
-                                            {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
+                                            {{ old('remember') ? 'checked' : '' }}> {{ __('Recuerdame') }}
                                         <span class="form-check-sign">
                                             <span class="check"></span>
                                         </span>
@@ -97,7 +79,7 @@
                                 </div>
                         </div>
                         <div class="card-footer justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
+                            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Acceder') }}</button>
                         </div>
                     </div>
                 </form>
@@ -105,13 +87,13 @@
                     <div class="col-6">
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" class="text-light">
-                                <small>{{ __('Forgot password?') }}</small>
+                                <small>{{ __('Olvidaste tu contraseña?') }}</small>
                             </a>
                         @endif
                     </div>
                     <div class="col-6 text-right">
                         <a href="{{ route('register') }}" class="text-light">
-                            <small>{{ __('Create new account') }}</small>
+                            <small>{{ __('Crea una nueva cuenta') }}</small>
                         </a>
                     </div>
                 </div>

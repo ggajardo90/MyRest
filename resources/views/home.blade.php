@@ -128,7 +128,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-12">
           <div class="card">
-            <div class="card-header card-header-tabs card-header-primary">
+            <div class="card-header card-header-tabs card-header-warning">
               <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                   <span class="nav-tabs-title">Tasks:</span>

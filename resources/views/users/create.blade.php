@@ -7,9 +7,9 @@
                 <form action="{{ route('users.store') }}" method="post" class="form-horizontals">
                 @csrf
                 <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Usuarios</h4>
-                        <p class="card-category">Ingresar datos</p>
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title text-dark">Usuarios</h4>
+                        <p class="card-category text-dark">Ingresar datos</p>
                     </div>
                     <div class="card-body">
                         <div class="row">

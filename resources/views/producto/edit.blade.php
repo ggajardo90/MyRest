@@ -1,31 +1,32 @@
-@extends('layouts.app')
-
-@section('template_title')
-    Update Producto
-@endsection
+@extends('layouts.main', ['activePage' => 'productos','titlePage' => 'Editar Producto'])
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="">
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
             <div class="col-md-12">
-
-                @includeif('partials.errors')
-
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Editar producto</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('productos.update', $producto->id) }}"  role="form" enctype="multipart/form-data">
+                <form action="{{ route('productos.update', $producto->id) }}" method="POST" role="form" enctype="multipart/form-data">
+                
+                    <div class="card">
+                        <div class="card-header card-header-warning">
+                            <h4 class="card-title text-dark">Productos</h4>
+                            <p class="card-category text-dark">Ingresar datos</p>
+                        </div>
+                        <div class="card-body">
                             {{ method_field('PATCH') }}
                             @csrf
 
                             @include('producto.form')
-
-                        </form>
+                        </div>
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 @endsection
+
+<!-- @includeif('partials.errors')-->

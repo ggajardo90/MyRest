@@ -8,9 +8,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-head card-header-primary">
-                                    <h4 class="card-title">Usuarios</h4>
-                                    <p class="card-category">Usuarios Registrados</p>
+                                <div class="card-head card-header-warning">
+                                    <h4 class="card-title text-dark">Usuarios</h4>
+                                    <p class="card-category text-dark">Usuarios Registrados</p>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

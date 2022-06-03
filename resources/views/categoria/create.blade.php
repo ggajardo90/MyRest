@@ -1,30 +1,29 @@
-@extends('layouts.app')
-
-@section('template_title')
-    Create Categoria
-@endsection
+@extends('layouts.main', ['activePage' => 'categorias','titlePage' => 'Nueva Categoria'])
 
 @section('content')
-    <section class="content container-fluid">
+<div class="content">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-
-                @includeif('partials.errors')
-
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Create Categoria</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('categorias.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-
+                <form action="{{ route('categorias.store') }}" method="post" role="form" enctype="multipart/form-data" class="form-horizontals">
+                @csrf
+                    <div class="card">
+                        <div class="card-header card-header-warning">
+                            <h4 class="card-title text-dark">Categorias</h4>
+                            <p class="card-category text-dark">Ingresar datos</p>
+                        </div>
+                        <div class="card-body">
                             @include('categoria.form')
-
-                        </form>
+                        </div>
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 @endsection
+
+<!--@includeif('partials.errors')-->
