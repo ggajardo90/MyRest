@@ -1,7 +1,7 @@
 @extends('layouts.main', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
 
 @section('content')
-<div class="content">
+  <div class="content">
     <div class="container-fluid">
       <div class="row">
 
@@ -153,9 +153,9 @@
                     </li>
                   </ul>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="card-body">
+            <div class="card-body">
               <div class="tab-content">
                 <div class="tab-pane active" id="profile">
                   <table class="table">
@@ -370,8 +370,8 @@
               </div>
             </div>
           </div>
-    </div>
-    <div class="col-lg-6 col-md-12">
+        </div>
+        <div class="col-lg-6 col-md-12">
           <div class="card">
             <div class="card-header card-header-warning">
               <h4 class="card-title">Employees Stats</h4>
@@ -417,5 +417,6 @@
         </div>
       </div> --}}
     </div>
-</div>
+  </div>
 @endsection
+
