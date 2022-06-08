@@ -26,7 +26,7 @@ cp .env.example .env
 4.- Ejecutar el siguiente comando para migrar la base de datos
 ```
 1# php artisan migrate  
-2# php artisan db:seed
+2# php artisan db:seed (si se necesita poblar la base de datos)
 3# php artisan key:generate
 ```
 5.- Correr el proyecto desde la terminal _(ctrl + ñ en vscode)_ dentro del directorio
