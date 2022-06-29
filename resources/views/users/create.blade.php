@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <form class="form" method="POST" action="{{ route('users.store') }}" class="form-horizontals">
                 @csrf
-                
+
                 <div class="card">
                     <div class="card-header card-header-warning">
                         <h4 class="card-title text-dark">Usuarios</h4>
@@ -107,6 +107,21 @@
                                 </div>
                             @endif
                         </div>
+
+                        {{-- <select name="roles" >
+                            @foreach ($roles as $rol)
+
+                            <option value="{{$rol['id']}}">{{$rol['name']}}</option>
+
+                            @endforeach
+ --}}
+
+
+
+                        </select>
+
+
+
                     </div>
                     <div class="card-footer ml-auto mr-auto">
                         <button class="btn btn-primary" type="submit">Guardar</button>

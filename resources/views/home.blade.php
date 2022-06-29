@@ -4,7 +4,7 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
-
+<h1>Bienvenido</h1>
 
         {{-- <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">

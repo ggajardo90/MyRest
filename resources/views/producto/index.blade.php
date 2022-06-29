@@ -14,6 +14,7 @@
                                 </div>
 
                                 <div class="card-body">
+                                    @can('producto.create')
                                     <div class="row">
                                         <div class="col-12 text-right">
                                             <a href="{{route('productos.create')}}" class="btn btn-facebook">Nuevo Producto</a>
@@ -25,7 +26,8 @@
                                         </div>
                                         @endif
                                     </div>
-                                    
+                                    @endcan
+
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead class="text-primary">
@@ -53,11 +55,17 @@
 
                                                         <td class="text-right">
                                                             <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+
                                                                 <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+
+                                                                @can('producto.edit')
                                                                 <a class="btn btn-sm btn-success" href="{{ route('productos.edit',$producto->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                                @endcan
                                                                 @csrf
                                                                 @method('DELETE')
+                                                                @can('producto.destroy')
                                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                                @endcan
                                                             </form>
                                                         </td>
                                                     </tr>

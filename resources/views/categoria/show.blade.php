@@ -11,8 +11,8 @@
                         <p class="card-category text-dark">{{$categoria->descripcion}}</p>
                     </div>
                     <div class="card-body">
-                        
-                        
+
+
                         <!--<div class="form-group">
                             <strong>Nombre:</strong>
                             {{ $categoria->nombre }}

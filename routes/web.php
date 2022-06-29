@@ -19,12 +19,17 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/users/create',[App\Http\Controllers\UserController::class,'create'])->name('users.create');
-Route::post('/users',[App\Http\Controllers\UserController::class,'store'])->name('users.store');
 
-Route::get('users',[App\Http\Controllers\UserController::class,'index'])->name('users.index')->middleware('auth');
-Route::get('producto',[App\Http\Controllers\ProductoController::class,'index'])->name('producto.index')->middleware('auth');
-Route::get('categoria',[App\Http\Controllers\CategoriaController::class,'index'])->name('categoria.index')->middleware('auth');
+Route::get('producto',[App\Http\Controllers\ProductoController::class,'index'])->name('producto.index')->middleware(['can:prodructo.index','auth']);
+Route::get('categoria',[App\Http\Controllers\CategoriaController::class,'index'])->name('categoria.index')->middleware(['can:categoria.index','auth']);
 
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');
+
+Route::prefix('users')
+->middleware('auth')
+->group(function(){
+Route::get('create',[App\Http\Controllers\UserController::class,'create'])->name('users.create')->middleware('can:users.create');
+Route::post('store',[App\Http\Controllers\UserController::class,'store'])->name('users.store')->middleware('can:users.create');;
+Route::get('index',[App\Http\Controllers\UserController::class,'index'])->name('users.index')->middleware('can:users.index');;
+});

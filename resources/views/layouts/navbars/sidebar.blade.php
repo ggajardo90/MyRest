@@ -53,12 +53,15 @@
           <p>{{ __('Productos') }}</p>
         </a>
       </li>
+      @can('user.index')
+
       <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
         <a class="nav-link" href="{{route('users.index')}}">
-          <i class="material-icons">group</i>
-          <p>{{ __('Usuarios') }}</p>
+            <i class="material-icons">group</i>
+            <p>{{ __('Usuarios') }}</p>
         </a>
-      </li>
+    </li>
+    @endcan
       <!--<li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="#">
           <i class="material-icons">location_ons</i>
