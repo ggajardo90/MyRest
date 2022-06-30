@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ProductoController
@@ -17,13 +18,22 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    //filtro + buscar producto
+    public function index(Request $request){
+        $texto=trim($request->get('texto'));
+        $productos = Producto::where('nombre', 'LIKE', '%'.$texto.'%')->get();
+
+        return view('producto.index', compact('productos', 'texto'));
+    }
+    //
+    /*public function index()
     {
         $productos = Producto::paginate();
 
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
+    */
 
     /**
      * Show the form for creating a new resource.

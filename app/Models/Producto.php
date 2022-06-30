@@ -22,9 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
+
 class Producto extends Model
 {
-    
+
     static $rules = [
 		'categoria_id' => 'required',
 		'nombre' => 'required',
@@ -36,6 +37,7 @@ class Producto extends Model
     ];
 
     protected $perPage = 20;
+    protected $table = 'productos';
 
     /**
      * Attributes that should be mass-assignable.
@@ -52,6 +54,6 @@ class Producto extends Model
     {
         return $this->hasOne('App\Models\Categoria', 'id', 'categoria_id');
     }
-    
+
 
 }
