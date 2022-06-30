@@ -34,6 +34,8 @@ class RolSeeder extends Seeder
             ['name' => 'users.index'],
             ['name' => 'users.create'],
             ['name' => 'users.edit'],
+            ['name' => 'users.show'],
+            ['name' => 'users.update'],
             ['name' => 'users.destroy'],
             ['name' => 'perfil.edit'],
             ['name' => 'perfil.editRole'],

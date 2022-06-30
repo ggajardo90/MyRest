@@ -13,6 +13,13 @@
                                     <p class="card-category text-dark">Usuarios Registrados</p>
                                 </div>
                                 <div class="card-body">
+
+                                    @if (session('success'))
+                                    <div class="alert alert-success" role="success">
+                                        {{session('success')}}
+                                    </div>
+                                    @endif
+
                                     <div class="row">
                                         <div class="col-12 text-right">
                                             <a href="{{route('users.create')}}" class="btn btn-facebook">Nuevo Usuario</a>
@@ -37,7 +44,15 @@
                                                         <td>{{$user->email}}</td>
                                                         <td>{{$user->username}}</td>
                                                         <td>{{$user->created_at}}</td>
-                                                        <td></td>
+                                                        <td class="td-actions text-right">
+
+                                                            <a href="{{route('users.show',$user->id)}}" class="btn btn-info"><i class="material-icons">person</i></a>
+
+                                                            <button class="btn btn-danger " type="button">
+                                                                <i class="material-icons">close</i>
+                                                            </button>
+
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

@@ -1,16 +1,16 @@
-@extends('layouts.main',['activePage' => 'users','titlePage' => 'Nuevo usuario'])
+@extends('layouts.main',['activePage' => 'users','titlePage' => 'Editar usuario'])
 @section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form class="form" method="POST" action="{{ route('users.store') }}" class="form-horizontals">
+                <form class="form" method="POST" action="{{ route('users.update',$user->id) }}" class="form-horizontals">
                 @csrf
-
+                @method('PUT')
                 <div class="card">
                     <div class="card-header card-header-warning">
-                        <h4 class="card-title text-dark">Usuarios</h4>
-                        <p class="card-category text-dark">Ingresar datos</p>
+                        <h4 class="card-title text-dark">Editar Usuarios</h4>
+
                     </div>
                     <div class="card-body">
                         <div class="bmd-form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -22,7 +22,7 @@
                                 </div>
 
                                 <input type="text" name="name" class="form-control"
-                                    placeholder="{{ __('Nombre y apellido...') }}" value="{{ old('name') }}" required
+                                     value="{{$user->name}}" required
                                     autocomplete="name" autofocus>
                             </div>
                             @if ($errors->has('name'))
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <input type="text" name="username" class="form-control"
-                                    placeholder="{{ __('Usuario...') }}" value="{{ old('username') }}" required
+                                    value="{{($user->username) }}" required
                                     autocomplete="username" >
                             </div>
                             @if ($errors->has('username'))
@@ -61,7 +61,7 @@
                                     </span>
                                 </div>
                                 <input type="email" name="email" class="form-control"
-                                    placeholder="{{ __('Correo Electronico...') }}" value="{{ old('email') }}" required
+                                    value="{{$user->email}}" required
                                     autocomplete="email">
                             </div>
                             @if ($errors->has('email'))
@@ -79,7 +79,7 @@
                                     </span>
                                 </div>
                                 <input type="password" name="password" id="password" class="form-control"
-                                    placeholder="{{ __('Contraseña...') }}" required autocomplete="new-password">
+                                    placeholder="{{ __('Ingrese Nueva Contraseña') }}" required autocomplete="new-password">
                             </div>
                             @if ($errors->has('password'))
                                 <div id="password-error" class="error text-danger pl-3" for="password"
@@ -97,7 +97,7 @@
                                     </span>
                                 </div>
                                 <input type="password" name="password_confirmation" id="password_confirmation"
-                                    class="form-control" placeholder="{{ __('Confirmar contraseña...') }}" required
+                                    class="form-control" placeholder="{{ __('Confirmar Nueva Contraseña...') }}" required
                                     autocomplete="new-password">
                             </div>
                             @if ($errors->has('password_confirmation'))
@@ -107,15 +107,25 @@
                                 </div>
                             @endif
                         </div>
-                        <br>
-                        <select name='rol'class="form-select col-sm-7 m-auto" aria-label="Default select example">
-                             @foreach ($roles as $rol)
-                            <option value="{{$rol->name}}">{{$rol->name}}</option>
-                            @endforeach
+
+                       {{--  @foreach ($roles as $rol)
+                        <select name="roles" >
+
+                            <option>{{$roles->rol}}</option>
+
+                            @endforeach --}}
+
+
+
+
                         </select>
+
+
+
                     </div>
                     <div class="card-footer ml-auto mr-auto">
-                        <button class="btn btn-primary" type="submit">Guardar</button>
+                        <button class="btn btn-primary" type="submit">Actualizar</button>
+                        <a href="{{route('users.index')}}" class="btn  btn-success mr-3 ">Volver</a>
                     </div>
                 </div>
             </form>

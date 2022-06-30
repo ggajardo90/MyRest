@@ -41,18 +41,22 @@
           </ul>
         </div>
       </li>-->
+      @can('categoria.index')
       <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
         <a class="nav-link" href="{{route('categoria.index')}}">
-          <i class="material-icons">menu_book</i>
+            <i class="material-icons">menu_book</i>
             <p>{{ __('Categorias') }}</p>
         </a>
-      </li>
+    </li>
+    @endcan
+      @can('producto.index')
       <li class="nav-item{{ $activePage == 'productos' ? ' active' : '' }}">
         <a class="nav-link" href="{{route('producto.index')}}">
-          <i class="material-icons">restaurant</i>
-          <p>{{ __('Productos') }}</p>
+            <i class="material-icons">restaurant</i>
+            <p>{{ __('Productos') }}</p>
         </a>
-      </li>
+    </li>
+    @endcan
       @can('user.index')
 
       <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
