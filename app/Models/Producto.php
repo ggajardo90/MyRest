@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
+
 class Producto extends Model
 {
     
@@ -36,6 +37,7 @@ class Producto extends Model
     ];
 
     protected $perPage = 20;
+    protected $table = 'productos';
 
     /**
      * Attributes that should be mass-assignable.
