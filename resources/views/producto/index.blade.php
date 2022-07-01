@@ -46,7 +46,7 @@
                                 <div class="container">
                                     <div class="row">
                                         @foreach ($productos as $producto)
-                                            <div class="col" style="max-width:33%">
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                                 <div class="card shadow-sm">
 
                                                     <?php
@@ -64,10 +64,10 @@
                                                         <p class="card-text">{{ $producto->descripcion }}</p>
                                                         <h4 class="card-title">${{ $producto->precio }}</h4>
 
-                                                        <div class="d-flex justify-content-between align-items-center"
+                                                        <div class="justify-content-between align-items-center"
                                                             action="{ { route('productos.destroy',$producto->id) }}"
                                                             method="POST">
-                                                            <div class="btn-group btn-group-sm">
+                                                            <div class="btn-group">
                                                                 <a class="btn btn-sm btn-primary"
                                                                     href="{{ route('productos.show', $producto->id) }}"><i
                                                                         class="fa fa-fw fa-eye"></i></a>
