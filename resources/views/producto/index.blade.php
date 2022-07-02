@@ -47,7 +47,7 @@
                                     <div class="row">
                                         @foreach ($productos as $producto)
                                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                                <div class="card shadow-sm">
+                                                <div class="card">
 
                                                     <?php
                                                     $imagen = $producto->imagen;
@@ -58,33 +58,31 @@
                                                     <img src="<?php echo $imagen; ?>" class="card-img-top img-fluid">
 
                                                     <div class="card-body">
-                                                        <!--<h5 class="card-title">{{ $producto->id }}</h5>-->
                                                         <h5 class="card-title">{{ $producto->nombre }}</h5>
                                                         <p class="card-text">{{ $producto->categoria->nombre }}</p>
                                                         <p class="card-text">{{ $producto->descripcion }}</p>
                                                         <h4 class="card-title">${{ $producto->precio }}</h4>
+                                                        <div class="card-footer bg-transparent border-success">
+                                                            <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+                                                                <div class="btn-group btn-group-sm">
+                                                                    <a class="btn btn-primary"
+                                                                        href="{{ route('productos.show', $producto->id) }}"><i
+                                                                            class="fa fa-fw fa-eye"></i></a>
 
-                                                        <div class="justify-content-between align-items-center"
-                                                            action="{ { route('productos.destroy',$producto->id) }}"
-                                                            method="POST">
-                                                            <div class="btn-group">
-                                                                <a class="btn btn-sm btn-primary"
-                                                                    href="{{ route('productos.show', $producto->id) }}"><i
-                                                                        class="fa fa-fw fa-eye"></i></a>
+                                                                    @can('producto.edit')
+                                                                        <a class="btn btn-success"
+                                                                            href="{{ route('productos.edit', $producto->id) }}"><i
+                                                                                class="fa fa-fw fa-edit"></i></a>
+                                                                    @endcan
 
-                                                                @can('producto.edit')
-                                                                    <a class="btn btn-sm btn-success"
-                                                                        href="{{ route('productos.edit', $producto->id) }}"><i
-                                                                            class="fa fa-fw fa-edit"></i></a>
-                                                                @endcan
-
-                                                                @method('DELETE')
-                                                                @can('producto.destroy')
-                                                                    <button type="submit" class="btn btn-sm btn-danger"><i
-                                                                            class="fa fa-fw fa-trash"></i></button>
-                                                                @endcan
-                                                                @csrf
-                                                            </div>
+                                                                    @method('DELETE')
+                                                                    @can('producto.destroy')
+                                                                        <button type="submit" class="btn btn-danger"><i
+                                                                                class="fa fa-fw fa-trash"></i></button>
+                                                                    @endcan
+                                                                    @csrf
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
