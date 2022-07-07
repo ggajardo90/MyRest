@@ -23,16 +23,16 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet" />
-    <link href="{{ asset('demo/demo.css')}}" rel="stylesheet" />
+    {{-- <link href="{{ asset('demo/demo.css')}}" rel="stylesheet" /> --}}
 </head>
 
 <body class="{{ $class ?? '' }}">
 
     @auth()
-        
+
     @endauth
     @guest()
-        
+
     @endguest
 
     @guest
@@ -43,7 +43,7 @@
         </form>
         @include('layouts.page_templates.auth')
     @endguest
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!--   Core JS Files   -->

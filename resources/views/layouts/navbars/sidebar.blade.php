@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('img/sidebar-3.jpg') }}">
+<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('img/sidebar-1.jpg') }}">
     <div class="logo">
         <a href="{{ route('home') }}" class="simple-text logo-normal">
             <img src="{{ asset('/img/favicon.png') }}" width="50" height="50" class="d-inline-block align-top"
