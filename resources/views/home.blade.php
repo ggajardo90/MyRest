@@ -1,12 +1,12 @@
 @extends('layouts.main', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
 
 @section('content')
-  <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-<h1>Bienvenido {{Auth::user()->name}}</h1>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <h2>Hola {{ Auth::user()->name }} <small class="text-muted">Bienvenido nuevamente</small></h2>
 
-        {{-- <div class="col-lg-3 col-md-6 col-sm-6">
+                {{-- <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
@@ -73,8 +73,8 @@
             </div>
           </div>
         </div> --}}
-      </div>
-      {{-- <div class="row">
+            </div>
+            {{-- <div class="row">
         <div class="col-md-4">
           <div class="card card-chart">
             <div class="card-header card-header-success">
@@ -416,7 +416,6 @@
           </div>
         </div>
       </div> --}}
+        </div>
     </div>
-  </div>
 @endsection
-

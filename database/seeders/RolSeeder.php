@@ -24,30 +24,32 @@ class RolSeeder extends Seeder
 
         $permisos = array(
             ['name' => 'categoria.index'],      //1
-            ['name' => 'categoria.create'],     //2
-            ['name' => 'categoria.edit'],       //3
-            ['name' => 'categoria.destroy'],    //4
-            ['name' => 'producto.index'],       //5
-            ['name' => 'producto.create'],      //6
-            ['name' => 'producto.edit'],        //7
-            ['name' => 'producto.destroy'],     //8
-            ['name' => 'users.index'],          //9
-            ['name' => 'users.create'],         //10
-            ['name' => 'users.edit'],           //11
-            ['name' => 'users.show'],           //12
-            ['name' => 'users.update'],         //13
-            ['name' => 'users.destroy'],        //14
-            ['name' => 'perfil.edit'],          //15
-            ['name' => 'perfil.editRole'],      //16
+            ['name' => 'categoria.index.table'],//2
+            ['name' => 'categoria.create'],     //3
+            ['name' => 'categoria.edit'],       //4
+            ['name' => 'categoria.destroy'],    //5
+            ['name' => 'producto.index'],       //6
+            ['name' => 'producto.index.table'], //7
+            ['name' => 'producto.create'],      //8
+            ['name' => 'producto.edit'],        //9
+            ['name' => 'producto.destroy'],     //10
+            ['name' => 'users.index'],          //11
+            ['name' => 'users.create'],         //12
+            ['name' => 'users.edit'],           //13
+            ['name' => 'users.show'],           //14
+            ['name' => 'users.update'],         //15
+            ['name' => 'users.destroy'],        //16
+            ['name' => 'perfil.edit'],          //17
+            ['name' => 'perfil.editRole'],      //18
         );
 
         foreach($permisos as $permiso){
             Permission::create($permiso);
         }
 
-        $roleUser->syncPermissions([1,5]);
+        $roleUser->syncPermissions([1,6]);
 
-        $roleInvitado->syncPermissions([1,5]);
+        $roleInvitado->syncPermissions([1,6]);
 
     }
 }

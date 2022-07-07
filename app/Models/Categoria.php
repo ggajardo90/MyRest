@@ -29,7 +29,7 @@ class Categoria extends Model
 		'activa' => 'required',
     ];
 
-    protected $perPage = 10;
+    protected $perPage = 5;
 
     /**
      * Attributes that should be mass-assignable.

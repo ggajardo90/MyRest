@@ -9,7 +9,7 @@
 
                     <div class="card card-login card-hidden mb-3">
                         <div class="card-header card-header-warning text-center">
-                            <h4 class="card-title text-dark"><strong>{{ __('Registro de usuario') }}</strong></h4>
+                            <h3 class="card-title text-dark"><strong>{{ __('Registro de usuario') }}</strong></h3>
                             <div class="social-line">
                                 <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
                                     <i class="fa fa-facebook-square"></i>

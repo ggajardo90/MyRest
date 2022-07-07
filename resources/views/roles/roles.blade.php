@@ -9,7 +9,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-head card-header-warning">
-                                <h4 class="card-title text-dark">Usuarios</h4>
+                                <h3 class="card-title text-dark">Usuarios</h3>
                                 <p class="card-category text-dark">Usuarios Registrados</p>
                             </div>
                             <div class="card-body">

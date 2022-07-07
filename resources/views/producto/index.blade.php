@@ -5,95 +5,150 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-head card-header-warning">
-                            <h4 class="card-title text-dark">Productos</h4>
-                            <p class="card-category text-dark">Productos registrados en el sistema</p>
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="row">
-                                <form action="{{ route('producto.index') }}" method="GET">
-                                    <div class="form-row">
-                                        <div class="col-sm">
-                                            <input type="text" class="form-control" placeholder="Escribe para buscar"
-                                                name="texto" value="{{ $texto }}" size="50" maxlength="50">
-                                        </div>
-                                        <div class="col-auto">
-                                            <input type="submit" class="btn btn-primary" value="buscar">
-                                        </div>
-                                        <div class="col-auto text-right">
-                                            @can('producto.create')
-                                                <a href="{{ route('productos.create') }}" class="btn btn-facebook">Nuevo
-                                                    Producto</a>
-                                            </div>
-                                        @endcan
-                                    </div>
-                                </form>
-
-                                @if ($message = Session::get('success'))
-                                    <div class="alert alert-success alert-dismissible fade show">
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                @endif
+                    @can('producto.index.table')
+                        <div class="card">
+                            <div class="card-head card-header-warning">
+                                <h3 class="card-title text-dark">Productos</h3>
+                                    <p class="card-category text-dark">Productos registrados en el sistema</p>
                             </div>
 
+                            <div class="card-body">
+                                @can('producto.create')
+                                    <div class="col-12 text-right">
+                                        <a href="{{ route('productos.create') }}" class="btn btn-warning">Nuevo
+                                            Producto</a>
+                                    </div>
+                                    @if ($message = Session::get('success'))
+                                        <div class="alert alert-success alert-dismissible fade show">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @endif
+                                @endcan
 
-                            <main>
-                                <div class="container">
-                                    <div class="row">
-                                        @foreach ($productos as $producto)
-                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                                <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-primary">
+                                            <th>ID</th>
+                                            <th>Categoria</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>
+                                            <th>Descripcion</th>
+                                            <th>Stock</th>
+                                            <th>Imagen</th>
+                                            <th>Activo</th>
+                                            <th class="text-right">Acciones</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($productos as $producto)
+                                                <tr>
+                                                    <td>{{ $producto->id }}</td>
+                                                    <td>{{ $producto->categoria->nombre }}</td>
+                                                    <td>{{ $producto->nombre }}</td>
+                                                    <td>{{ $producto->precio }}</td>
+                                                    <td>{{ $producto->descripcion }}</td>
+                                                    <td>{{ $producto->stock }}</td>
+                                                    <td>{{ $producto->imagen }}</td>
+                                                    <td>{{ $producto->activo }}</td>
+                                                    <td class="text-right">
+                                                        <form action="{{ route('productos.destroy', $producto->id) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
+                                                            <a class="btn btn-just-icon btn-primary "
+                                                                href="{{ route('productos.show', $producto->id) }}"><i
+                                                                    class="fa fa-eye"></i></a>
+                                                            @can('producto.edit')
+                                                                <a class="btn btn-just-icon btn-success"
+                                                                    href="{{ route('productos.edit', $producto->id) }}"><i
+                                                                        class="fa fa-fw fa-edit"></i></a>
+                                                            @endcan
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            @can('producto.destroy')
+                                                                <button type="submit" class="btn btn-just-icon btn-danger"><i
+                                                                        class="fa fa-fw fa-trash"></i></button>
+                                                            @endcan
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer mr-auto">
+                                    {!! $productos->links() !!}
+                                    <p>
+                                        <button class="btn btn-warning" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collimgprod" aria-expanded="false" aria-controls="collimgprod">
+                                            Ver productos con imagenes
+                                        </button>
+                                    </p>
+                                </div>
 
-                                                    <?php
-                                                    $imagen = $producto->imagen;
-                                                    if (!file_exists($imagen)) {
-                                                        $imagen = 'img/noimage.png';
-                                                    }
-                                                    ?>
-                                                    <img src="<?php echo $imagen; ?>" class="card-img-top img-fluid">
+                            </div>
+                        </div>
+                        <div class="collapse" id="collimgprod">
+                        @endcan
 
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ $producto->nombre }}</h5>
-                                                        <p class="card-text">{{ $producto->categoria->nombre }}</p>
-                                                        <p class="card-text">{{ $producto->descripcion }}</p>
-                                                        <h4 class="card-title">${{ $producto->precio }}</h4>
+                        <div class="card">
+                            <div class="card-head card-header-warning">
+                                <h3 class="card-title text-dark">Productos</h3>
+                                    <p class="card-category text-dark">Productos registrados en el sistema</p>
+                            </div>
 
-                                                        <div class="card-footer bg-transparent border-success">
-                                                            <form action="{{ route('productos.destroy',$producto->id) }}" method="POST" onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Producto?')">
-                                                                <div class="btn-group btn-group-sm">
-                                                                    <a class="btn btn-primary"
-                                                                        href="{{ route('productos.show', $producto->id) }}"><i
-                                                                            class="fa fa-fw fa-eye"></i></a>
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach ($productos as $producto)
+                                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                            <div class="card">
 
-                                                                    @can('producto.edit')
-                                                                        <a class="btn btn-success"
-                                                                            href="{{ route('productos.edit', $producto->id) }}"><i
-                                                                                class="fa fa-fw fa-edit"></i></a>
-                                                                    @endcan
+                                                <?php
+                                                $imagen = $producto->imagen;
+                                                if (!file_exists($imagen)) {
+                                                    $imagen = 'img/noimage.png';
+                                                }
+                                                ?>
+                                                <img src="<?php echo $imagen; ?>" class="card-img-top img-fluid">
 
-                                                                    @method('DELETE')
-                                                                    @can('producto.destroy')
-                                                                        <button type="submit" class="btn btn-danger"><i
-                                                                                class="fa fa-fw fa-trash"></i></button>
-                                                                    @endcan
-                                                                    @csrf
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ $producto->nombre }}</h5>
+                                                    <p class="card-text">{{ $producto->categoria->nombre }}</p>
+                                                    <p class="card-text">{{ $producto->descripcion }}</p>
+                                                    <h4 class="card-title">${{ $producto->precio }}</h4>
 
+                                                    <div class="card-footer bg-transparent border-success">
+                                                        <form action="{{ route('productos.destroy', $producto->id) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Producto?')">
+                                                            <div class="btn-group btn-group-sm">
+                                                                <a class="btn btn-primary"
+                                                                    href="{{ route('productos.show', $producto->id) }}"><i
+                                                                        class="fa fa-fw fa-eye"></i></a>
+
+                                                                @can('producto.edit')
+                                                                    <a class="btn btn-success"
+                                                                        href="{{ route('productos.edit', $producto->id) }}"><i
+                                                                            class="fa fa-fw fa-edit"></i></a>
+                                                                @endcan
+
+                                                                @method('DELETE')
+                                                                @can('producto.destroy')
+                                                                    <button type="submit" class="btn btn-danger"><i
+                                                                            class="fa fa-fw fa-trash"></i></button>
+                                                                @endcan
+                                                                @csrf
+                                                            </div>
+                                                        </form>
                                                     </div>
+
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        </div>
+                                    @endforeach
 
-                                    </div>
                                 </div>
-                            </main>
+                            </div>
                         </div>
                         <div class="card-footer mr-auto">
                             {{-- {!! $productos->links() !!} --}}
@@ -102,5 +157,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

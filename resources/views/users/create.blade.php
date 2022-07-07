@@ -1,4 +1,5 @@
 @extends('layouts.main', ['activePage' => 'users', 'titlePage' => 'Nuevo usuario'])
+
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -9,7 +10,7 @@
 
                         <div class="card">
                             <div class="card-header card-header-warning">
-                                <h4 class="card-title text-dark">Usuarios</h4>
+                                <h3 class="card-title text-dark">Usuarios</h3>
                                 <p class="card-category text-dark">Ingresar datos</p>
                             </div>
                             <div class="card-body">
@@ -54,6 +55,7 @@
                                     @endif
                                 </div>
                                 <!--finUsername-->
+                                
                                 <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
