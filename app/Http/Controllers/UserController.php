@@ -51,11 +51,11 @@ class UserController extends Controller
 
     public function edit(User $user){
 
-
-        return view('users.edit',compact('user'));
+        $roles = Role::all();
+        return view('users.edit',compact('user', 'roles'));
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id){
 
         $user = User::findOrFail($id);
 
