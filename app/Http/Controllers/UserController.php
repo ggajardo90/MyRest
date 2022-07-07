@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Role;
+use DB;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
 
     public function index(){
 
-        $users = User::paginate(10);
+        $users = User::orderBy('id','ASC')->paginate(10);
         return view('users.index',compact('users'));
     }
 
@@ -28,18 +29,17 @@ class UserController extends Controller
     {
 
 
-        $roles = Role::all();
-
+        $roles = Role::pluck('name','name')->all();
         return view('users.create',compact('roles'));
     }
 
     public function store(Request $request)
     {
-        $role = $request->rol;
+        
         $newUser = new CreateNewUser();
         $user = $newUser->create($request->all());
-        $user->assignRole($role);
-        return redirect()->route('users.index')->with('success','Usuario Creado Con Exito');
+        $user->assignRole($request->input('roles'));
+        return redirect()->route('users.index')->with('success','Cuenta de usuario creada con exito');
     }
 
     public function show(User $user){
@@ -51,25 +51,27 @@ class UserController extends Controller
 
     public function edit(User $user){
 
-        $roles = Role::all();
-        return view('users.edit',compact('user', 'roles'));
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('users.edit',compact('user', 'roles', 'userRole'));
     }
 
-    public function update(Request $request, User $user){
+    public function update(Request $request, $id){
 
-        $role = $request->rol;
-
-        $data = $request->only('name','username','email');
+        $input = $request->all();
         $password = $request->input('password');
         if ($password) {
-            $data ['password'] = bcrypt($password);
-
+            $input ['password'] = bcrypt($password);
         }
 
-        $user->assignRole($role);
-        $user->update($data);
+        $user = User::find($id);
+        $user->update($input);
 
-        return redirect()->route('users.index')->with('success','Usuario Actualizado Con Exito');
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('users.index')->with('success','Cuenta de usuario actualizada con exito');
 
     }
 

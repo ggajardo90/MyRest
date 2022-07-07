@@ -31,10 +31,10 @@
                                         <table class="table">
                                             <thead class="text-primary">
                                                 <th>ID</th>
-                                                <th>Nombre</th>
+                                                <th>Nombre y Apellido</th>
                                                 <th>Correo</th>
-                                                <th>Username</th>
-                                                <th>Created_at</th>
+                                                <th>Nombre de usuario</th>
+                                                <th>Rol/es</th>
                                                 <th class="text-right">Acciones</th>
                                             </thead>
                                             <tbody>
@@ -44,7 +44,13 @@
                                                         <td>{{ $user->name }}</td>
                                                         <td>{{ $user->email }}</td>
                                                         <td>{{ $user->username }}</td>
-                                                        <td>{{ $user->created_at }}</td>
+                                                        <td>
+                                                            @if(!empty($user->getRoleNames()))
+                                                              @foreach($user->getRoleNames() as $v)
+                                                                 {{ $v }}
+                                                              @endforeach
+                                                            @endif
+                                                          </td>
                                                         <td class="td-actions text-right">
 
                                                             <a class="btn btn-primary"

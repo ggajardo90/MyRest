@@ -116,12 +116,7 @@
                                                 <i class="material-icons">groups</i>
                                             </span>
                                         </div>
-                                        <select name='rol' id='rol_confirmation' class="form-select ms-auto"
-                                            aria-label="Default select example">
-                                            @foreach ($roles as $rol)
-                                                <option value="{{ $rol->name }}">{{ $rol->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','Small')) !!}
                                         @if ($errors->has('rol_confirmation'))
                                             <div id="rol_confirmation-error" class="error text-danger pl-3"
                                                 for="rol_confirmation" style="display: block;">
