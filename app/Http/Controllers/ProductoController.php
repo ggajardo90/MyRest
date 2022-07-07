@@ -18,14 +18,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //filtro + buscar producto
-    // public function index(Request $request){
-    //     $texto=trim($request->get('texto'));
-    //     $productos = Producto::where('nombre', 'LIKE', '%'.$texto.'%')->get();
-        
-    //     return view('producto.index', compact('productos', 'texto'));
-    // }
-    //
+    
     public function index()
     {
         $productos = Producto::paginate();
@@ -34,7 +27,6 @@ class ProductoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
-    
     /**
      * Show the form for creating a new resource.
      *

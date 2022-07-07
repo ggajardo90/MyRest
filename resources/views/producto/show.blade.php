@@ -15,14 +15,14 @@
 
                         <div class="card-body">
 
-                            <!--<div class="form-group">
+                            {{-- <div class="form-group">
                                         <strong>Categoria:</strong>
                                         {{ $producto->categoria->nombre }}
                                     </div>
                                     <div class="form-group">
                                         <strong>Nombre:</strong>
                                         {{ $producto->nombre }}
-                                    </div>-->
+                                    </div> --}}
                             <div class="form-group">
                                 <strong>Precio:</strong>
                                 ${{ $producto->precio }}

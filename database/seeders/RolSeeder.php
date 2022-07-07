@@ -19,7 +19,6 @@ class RolSeeder extends Seeder
 
         Role::create(['name' => 'Admin']);
         $roleUser = Role::create(['name' => 'Mesero']);
-        $roleInvitado = Role::create(['name' => 'Invitado']);
 
 
         $permisos = array(
@@ -48,8 +47,6 @@ class RolSeeder extends Seeder
         }
 
         $roleUser->syncPermissions([1,6]);
-
-        $roleInvitado->syncPermissions([1,6]);
 
     }
 }

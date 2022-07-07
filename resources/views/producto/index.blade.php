@@ -9,7 +9,7 @@
                         <div class="card">
                             <div class="card-head card-header-warning">
                                 <h3 class="card-title text-dark">Productos</h3>
-                                    <p class="card-category text-dark">Productos registrados en el sistema</p>
+                                <p class="card-category text-dark">Productos registrados en el sistema</p>
                             </div>
 
                             <div class="card-body">
@@ -94,7 +94,7 @@
                         <div class="card">
                             <div class="card-head card-header-warning">
                                 <h3 class="card-title text-dark">Productos</h3>
-                                    <p class="card-category text-dark">Productos registrados en el sistema</p>
+                                <p class="card-category text-dark">Productos registrados en el sistema</p>
                             </div>
 
                             <div class="card-body">
@@ -112,36 +112,36 @@
                                                 <img src="<?php echo $imagen; ?>" class="card-img-top img-fluid">
 
                                                 <div class="card-body">
-                                                    <h5 class="card-title">{{ $producto->nombre }}</h5>
-                                                    <p class="card-text">{{ $producto->categoria->nombre }}</p>
-                                                    <p class="card-text">{{ $producto->descripcion }}</p>
-                                                    <h4 class="card-title">${{ $producto->precio }}</h4>
+                                                    <h4 class="card-title"><strong>Nombre:</strong>
+                                                        {{ $producto->nombre }}</h4>
+                                                    <h4 class="card-text"><strong>Categoria:</strong>
+                                                        {{ $producto->categoria->nombre }}</h4>
+                                                    <p class="card-text"><strong>Descripción:</strong>
+                                                        {{ $producto->descripcion }}</p>
+                                                    <h4 class="card-title"><strong>Precio:</strong>
+                                                        ${{ $producto->precio }} CLP</h4>
+                                                </div>
+                                                <div class="card-footer ml-auto mr-auto">
+                                                    <form action="{{ route('productos.destroy', $producto->id) }}"
+                                                        method="POST"
+                                                        onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Producto?')">
+                                                        <a class="btn btn-primary btn-sm"
+                                                            href="{{ route('productos.show', $producto->id) }}"><i
+                                                                class="fa fa-fw fa-eye"></i></a>
 
-                                                    <div class="card-footer bg-transparent border-success">
-                                                        <form action="{{ route('productos.destroy', $producto->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Producto?')">
-                                                            <div class="btn-group btn-group-sm">
-                                                                <a class="btn btn-primary"
-                                                                    href="{{ route('productos.show', $producto->id) }}"><i
-                                                                        class="fa fa-fw fa-eye"></i></a>
+                                                        @can('producto.edit')
+                                                            <a class="btn btn-success btn-sm"
+                                                                href="{{ route('productos.edit', $producto->id) }}"><i
+                                                                    class="fa fa-fw fa-edit"></i></a>
+                                                        @endcan
 
-                                                                @can('producto.edit')
-                                                                    <a class="btn btn-success"
-                                                                        href="{{ route('productos.edit', $producto->id) }}"><i
-                                                                            class="fa fa-fw fa-edit"></i></a>
-                                                                @endcan
-
-                                                                @method('DELETE')
-                                                                @can('producto.destroy')
-                                                                    <button type="submit" class="btn btn-danger"><i
-                                                                            class="fa fa-fw fa-trash"></i></button>
-                                                                @endcan
-                                                                @csrf
-                                                            </div>
-                                                        </form>
-                                                    </div>
-
+                                                        @method('DELETE')
+                                                        @can('producto.destroy')
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                                    class="fa fa-fw fa-trash"></i></button>
+                                                        @endcan
+                                                        @csrf
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,14 +149,13 @@
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer mr-auto">
-                            {{-- {!! $productos->links() !!} --}}
+                            <div class="card-footer mr-auto">
+                                {!! $productos->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

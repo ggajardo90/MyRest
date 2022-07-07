@@ -13,14 +13,14 @@
                         <div class="card-body">
 
 
-                            <!--<div class="form-group">
+                            {{-- <div class="form-group">
                                     <strong>Nombre:</strong>
                                     {{ $categoria->nombre }}
                                 </div>
                                 <div class="form-group">
                                     <strong>Descripcion:</strong>
                                     {{ $categoria->descripcion }}
-                                </div>-->
+                                </div> --}}
                             <div class="form-group">
                                 <strong>Imagen:</strong>
                                 {{ $categoria->imagen }}

@@ -7,13 +7,13 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-warning">
-                            <div class="card-title text-dark">Usuarios</div>
+                            <h3 class="card-title text-dark">Usuarios</h3>
                             <p class="card-category text-dark">Vista detallada del usuario {{ $user->name }}</p>
                         </div>
 
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 ml-auto mr-auto">
                                     <div class="card text-center">
                                         <div class="card-header">
                                             <img src="{{ asset('/img/faces/avatar.jpg') }}" alt="image"
