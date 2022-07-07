@@ -36,7 +36,7 @@ class Producto extends Model
 		'activo' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10;
     protected $table = 'productos';
 
     /**

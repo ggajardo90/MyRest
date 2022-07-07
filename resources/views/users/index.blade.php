@@ -15,14 +15,15 @@
                                 <div class="card-body">
 
                                     @if (session('success'))
-                                    <div class="alert alert-success" role="success">
-                                        {{session('success')}}
-                                    </div>
+                                        <div class="alert alert-success" role="success">
+                                            {{ session('success') }}
+                                        </div>
                                     @endif
 
                                     <div class="row">
                                         <div class="col-12 text-right">
-                                            <a href="{{route('users.create')}}" class="btn btn-facebook">Nuevo Usuario</a>
+                                            <a href="{{ route('users.create') }}" class="btn btn-facebook">Nuevo
+                                                Usuario</a>
                                         </div>
                                     </div>
 
@@ -39,18 +40,19 @@
                                             <tbody>
                                                 @foreach ($users as $user)
                                                     <tr>
-                                                        <td>{{$user->id}}</td>
-                                                        <td>{{$user->name}}</td>
-                                                        <td>{{$user->email}}</td>
-                                                        <td>{{$user->username}}</td>
-                                                        <td>{{$user->created_at}}</td>
+                                                        <td>{{ $user->id }}</td>
+                                                        <td>{{ $user->name }}</td>
+                                                        <td>{{ $user->email }}</td>
+                                                        <td>{{ $user->username }}</td>
+                                                        <td>{{ $user->created_at }}</td>
                                                         <td class="td-actions text-right">
 
-                                                            <a href="{{route('users.show',$user->id)}}" class="btn btn-info"><i class="material-icons">person</i></a>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('users.show', $user->id) }}"><i
+                                                                    class="fa fa-fw fa-eye"></i></a>
 
-                                                            <button class="btn btn-danger " type="button">
-                                                                <i class="material-icons">close</i>
-                                                            </button>
+                                                            <button type="submit" class="btn btn-danger"><i
+                                                                    class="fa fa-fw fa-trash"></i></button>
 
                                                         </td>
                                                     </tr>
@@ -61,7 +63,7 @@
 
                                 </div>
                                 <div class="card-footer mr-auto">
-                                    {{$users->links()}}
+                                    {{ $users->links() }}
                                 </div>
                             </div>
                         </div>

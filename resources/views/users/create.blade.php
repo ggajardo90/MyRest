@@ -107,12 +107,21 @@
                                 </div>
                             @endif
                         </div>
-                        <br>
-                        <select name='rol'class="form-select col-sm-7 m-auto" aria-label="Default select example">
-                             @foreach ($roles as $rol)
-                            <option value="{{$rol->name}}">{{$rol->name}}</option>
-                            @endforeach
-                        </select>
+                        <div
+                            class="bmd-form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }} mt-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">groups</i>
+                                    </span>
+                                </div>
+                                <select name='rol'class="form-select ms-auto" aria-label="Default select example">
+                                    @foreach ($roles as $rol)
+                                    <option value="{{$rol->name}}">{{$rol->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer ml-auto mr-auto">
                         <button class="btn btn-primary" type="submit">Guardar</button>

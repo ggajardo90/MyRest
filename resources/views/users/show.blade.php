@@ -6,51 +6,46 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary">
-                            <div class="card-title">Usuarios</div>
-                            <p class="card-category">Vista detallada del Usuario {{ $user->name }}</p>
+                        <div class="card-header card-header-warning">
+                            <div class="card-title text-dark">Usuarios</div>
+                            <p class="card-category text-dark">Vista detallada del usuario {{ $user->name }}</p>
                         </div>
 
                         <!--body-->
 
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card card-user">
-                                        <div class="card-body ">
-                                            <p class="card-text">
-                                            <div class="author">
-                                                <a href="#" class="d-flex">
+                            <main>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-auto ">
+                                            <div class="card text-center">
+                                                <a href="#" class="">
                                                     <img src="{{ asset('/img/perfil1.png') }}" alt="image"
-                                                        class="col-lg-4 ">
-                                                    <h5 class="title mx-3">{{ $user->name }}</h5>
+                                                        class="card-img-top col-lg-4">
                                                 </a>
-                                                <br>
-                                                <p class="description">
-                                                    {{ $user->username }}<br>
-                                                    {{ $user->email }}<br>
-                                                    {{ $user->created_at }}
 
-                                                </p>
-                                            </div>
-                                            </p>
-                                            <div class="card-description">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio ea magnam
-                                                quis obcaecati quos ipsum cupiditate atque enim voluptates! Fugiat.
-                                            </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="button-container">
-                                                <a href="{{route('users.index')}}" class="btn btn-sm btn-success mr-3">Volver</a>
-                                                <a href="{{route('users.edit',$user->id)}}" class="btn btn-sm btn-info mr-3">Editar</a>
+                                                <div class="card-body">
+                                                    <h3 class="card-title">{{ $user->name }}</h3>
+                                                    <p class="card-text">{{ $user->username }}<br>
+                                                        {{ $user->email }}</p>
+                                                    <p class="card-title">Creado el: {{ $user->created_at }}</p>
 
+
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                        <div class="btn-group btn-group-sm">
+                                                            <a href="{{ route('users.index') }}"
+                                                                class="btn btn-success mr-3">Volver</a>
+                                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                                class="btn btn-info">Editar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </main>
                         </div>
-
                     </div>
                 </div>
             </div>

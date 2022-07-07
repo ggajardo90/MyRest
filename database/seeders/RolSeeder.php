@@ -23,29 +23,29 @@ class RolSeeder extends Seeder
 
 
         $permisos = array(
-            ['name' => 'categoria.index'],
-            ['name' => 'categoria.create'],
-            ['name' => 'categoria.edit'],
-            ['name' => 'categoria.destroy'],
-            ['name' => 'producto.index'],
-            ['name' => 'producto.create'],
-            ['name' => 'producto.edit'],
-            ['name' => 'producto.destroy'],
-            ['name' => 'users.index'],
-            ['name' => 'users.create'],
-            ['name' => 'users.edit'],
-            ['name' => 'users.show'],
-            ['name' => 'users.update'],
-            ['name' => 'users.destroy'],
-            ['name' => 'perfil.edit'],
-            ['name' => 'perfil.editRole'],
+            ['name' => 'categoria.index'],      //1
+            ['name' => 'categoria.create'],     //2
+            ['name' => 'categoria.edit'],       //3
+            ['name' => 'categoria.destroy'],    //4
+            ['name' => 'producto.index'],       //5
+            ['name' => 'producto.create'],      //6
+            ['name' => 'producto.edit'],        //7
+            ['name' => 'producto.destroy'],     //8
+            ['name' => 'users.index'],          //9
+            ['name' => 'users.create'],         //10
+            ['name' => 'users.edit'],           //11
+            ['name' => 'users.show'],           //12
+            ['name' => 'users.update'],         //13
+            ['name' => 'users.destroy'],        //14
+            ['name' => 'perfil.edit'],          //15
+            ['name' => 'perfil.editRole'],      //16
         );
 
         foreach($permisos as $permiso){
             Permission::create($permiso);
         }
 
-        $roleUser->syncPermissions([1,2,3,4,5,6,7,8,13]);
+        $roleUser->syncPermissions([1,5]);
 
         $roleInvitado->syncPermissions([1,5]);
 

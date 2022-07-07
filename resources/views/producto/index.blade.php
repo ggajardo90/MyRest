@@ -62,6 +62,7 @@
                                                         <p class="card-text">{{ $producto->categoria->nombre }}</p>
                                                         <p class="card-text">{{ $producto->descripcion }}</p>
                                                         <h4 class="card-title">${{ $producto->precio }}</h4>
+
                                                         <div class="card-footer bg-transparent border-success">
                                                             <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
                                                                 <div class="btn-group btn-group-sm">
@@ -84,6 +85,7 @@
                                                                 </div>
                                                             </form>
                                                         </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
