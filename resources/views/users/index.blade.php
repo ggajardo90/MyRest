@@ -51,9 +51,13 @@
                                                                 href="{{ route('users.show', $user->id) }}"><i
                                                                     class="fa fa-fw fa-eye"></i></a>
 
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                    class="fa fa-fw fa-trash"></i></button>
-
+                                                            <form action="{{ route('users.destroy', $user->id) }}"
+                                                                method="POST" style="display: inline-block;" onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Usuario?')">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-danger"><i
+                                                                        class="fa fa-fw fa-trash"></i></button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

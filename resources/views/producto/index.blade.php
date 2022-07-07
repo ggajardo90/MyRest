@@ -64,7 +64,7 @@
                                                         <h4 class="card-title">${{ $producto->precio }}</h4>
 
                                                         <div class="card-footer bg-transparent border-success">
-                                                            <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+                                                            <form action="{{ route('productos.destroy',$producto->id) }}" method="POST" onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Producto?')">
                                                                 <div class="btn-group btn-group-sm">
                                                                     <a class="btn btn-primary"
                                                                         href="{{ route('productos.show', $producto->id) }}"><i
@@ -85,7 +85,7 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>

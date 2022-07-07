@@ -35,4 +35,5 @@ Route::get('index',[App\Http\Controllers\UserController::class,'index'])->name('
 Route::get('{user}',[App\Http\Controllers\UserController::class,'show'])->name('users.show')->middleware('can:users.show');
 Route::get('{user}/edit',[App\Http\Controllers\UserController::class,'edit'])->name('users.edit')->middleware('can:users.edit');
 Route::put('{user}',[App\Http\Controllers\UserController::class,'update'])->name('users.update')->middleware('can:users.update');
+Route::delete('{user}',[App\Http\Controllers\UserController::class,'destroy'])->name('users.destroy')->middleware('can:users.destroy');
 });

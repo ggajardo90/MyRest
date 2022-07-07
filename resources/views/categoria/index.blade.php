@@ -49,7 +49,7 @@
                                                         <td>{{ $categoria->activa }}</td>
 
                                                         <td class="text-right">
-                                                            <form action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
+                                                            <form action="{{ route('categorias.destroy',$categoria->id) }}" method="POST" onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
                                                                 <a class="btn btn-sm btn-primary" href="{{ route('categorias.show',$categoria->id) }}"><i class="fa fa-eye"></i> Ver</a>
                                                                 @can('categoria.edit')
                                                                 <a class="btn btn-sm btn-success" href="{{ route('categorias.edit',$categoria->id) }}"><i class="fa fa-edit"></i> Editar</a>

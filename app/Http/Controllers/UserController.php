@@ -55,22 +55,36 @@ class UserController extends Controller
         return view('users.edit',compact('user', 'roles'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, User $user){
 
-        $user = User::findOrFail($id);
+        $role = $request->rol;
 
         $data = $request->only('name','username','email');
-        if (trim($request->password)=='')
-        {
-            $data = $request->except('password');
-        }else {
-            $data = $request->all();
-            $data['password']=bcrypt($request->password);
+        $password = $request->input('password');
+        if ($password) {
+            $data ['password'] = bcrypt($password);
+
         }
 
+        $user->assignRole($role);
         $user->update($data);
 
-        return redirect()->back();
+        return redirect()->route('users.index')->with('success','Usuario Actualizado Con Exito');
+
+    }
+
+    public function destroy ($id){
+/*
+        $user->delete();
+
+        return back()->with('success','Usuario Eliminado Con Exito'); */
+
+        $user = User::find($id)->delete();
+
+        return redirect()->route('users.index')
+            ->with('success', 'Usuario eliminado correctamente');
 
     }
 }
+
+
