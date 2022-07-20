@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-head card-header-warning">
+                        <div class="card-header card-header-warning">
                             <h3 class="card-title text-dark">Usuarios</h3>
                             <p class="card-category text-dark">Usuarios registrados en el sistema.</p>
                         </div>
@@ -48,7 +48,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    <form action="{{ route('users.destroy', $user->id) }}" 
+                                                    <form action="{{ route('users.destroy', $user->id) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Usuario?')">
                                                         <a class="btn btn-just-icon btn-primary"

@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     @can('producto.index.table')
                         <div class="card">
-                            <div class="card-head card-header-warning">
+                            <div class="card-header card-header-warning">
                                 <h3 class="card-title text-dark">Productos</h3>
                                 <p class="card-category text-dark">Productos registrados en el sistema</p>
                             </div>
