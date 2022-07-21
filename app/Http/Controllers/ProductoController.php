@@ -6,6 +6,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 /**
  * Class ProductoController
@@ -18,7 +19,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
         $productos = Producto::paginate();
@@ -49,8 +50,16 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Producto::$rules);
+        $requestData = $request->all();
 
-        $producto = Producto::create($request->all());
+        if ($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $filename = time() . '.' . $imagen->getClientOriginalExtension();
+            Image::make($imagen)->resize(200, 200)->save( public_path('img/productos/' . $filename));
+            $requestData['imagen'] = $filename;
+        }
+
+        $producto = Producto::create($requestData);
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto creado con éxito.');
@@ -93,8 +102,16 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         request()->validate(Producto::$rules);
+        $requestData = $request->all();
 
-        $producto->update($request->all());
+        if ($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $filename = time() . '.' . $imagen->getClientOriginalExtension();
+            Image::make($imagen)->resize(200, 200)->save( public_path('img/productos/' . $filename));
+            $requestData['imagen'] = $filename;
+        }
+
+        $producto->update($requestData);
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto actualizado correctamente');

@@ -18,12 +18,13 @@ class UserSeeder extends Seeder
             'name'=>'admin',
             'username'=>'admin',
             'email'=>'admin@test.cl',
-            'password'=>bcrypt('password')
+            'password'=>bcrypt('password'),
+            'image_path'=>'default.jpg'
         ]);
 
         $user->assignRole('Admin');
 
-        User::factory(50)->create();
+        User::factory(5)->create();
 
     }
 }

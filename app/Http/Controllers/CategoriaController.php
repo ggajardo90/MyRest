@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Image;
 
 /**
  * Class CategoriaController
@@ -44,8 +46,16 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         request()->validate(Categoria::$rules);
+        $requestData = $request->all();
 
-        $categoria = Categoria::create($request->all());
+        if ($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $filename = time() . '.' . $imagen->getClientOriginalExtension();
+            Image::make($imagen)->resize(200, 200)->save( public_path('img/categorias/' . $filename));
+            $requestData['imagen'] = $filename;
+        }
+
+        $categoria = Categoria::create($requestData);
 
         return redirect()->route('categorias.index')
             ->with('success', 'Categoría creada con éxito.');
@@ -87,8 +97,16 @@ class CategoriaController extends Controller
     public function update(Request $request, Categoria $categoria)
     {
         request()->validate(Categoria::$rules);
+        $requestData = $request->all();
 
-        $categoria->update($request->all());
+        if ($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $filename = time() . '.' . $imagen->getClientOriginalExtension();
+            Image::make($imagen)->resize(200, 200)->save( public_path('img/categorias/' . $filename));
+            $requestData['imagen'] = $filename;
+        }
+
+        $categoria->update($requestData);
 
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria actualizada correctamente');

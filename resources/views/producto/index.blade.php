@@ -92,7 +92,7 @@
                         @endcan
 
                         <div class="card">
-                            <div class="card-head card-header-warning">
+                            <div class="card-header card-header-warning">
                                 <h3 class="card-title text-dark">Productos</h3>
                                 <p class="card-category text-dark">Productos registrados en el sistema</p>
                             </div>
@@ -103,13 +103,8 @@
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                             <div class="card">
 
-                                                <?php
-                                                $imagen = $producto->imagen;
-                                                if (!file_exists($imagen)) {
-                                                    $imagen = 'img/noimage.png';
-                                                }
-                                                ?>
-                                                <img src="<?php echo $imagen; ?>" class="card-img-top img-fluid">
+                                                <img src="/img/productos/{{ $producto->imagen }}" alt="imagen"
+                                                class="card-img-top img-fluid">
 
                                                 <div class="card-body">
                                                     <h4 class="card-title"><strong>Nombre:</strong>

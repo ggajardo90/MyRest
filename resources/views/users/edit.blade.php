@@ -4,14 +4,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form" method="POST" action="{{ route('users.update', $user->id) }}"
-                        class="form-horizontals">
+                    <form class="form-horizontals" method="POST" enctype="multipart/form-data"
+                        action="{{ route('users.update', $user->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="card">
                             <div class="card-header card-header-warning">
                                 <h3 class="card-title text-dark">Editar Usuarios</h3>
-
+                                <p class="card-category text-dark">Rellena todos los campos del formulario.</p>
                             </div>
                             <div class="card-body">
                                 <div class="bmd-form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -115,11 +115,29 @@
                                                 <i class="material-icons">groups</i>
                                             </span>
                                         </div>
-                                        {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','small')) !!}
+                                        {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', 'small']) !!}
                                         @if ($errors->has('rol_confirmation'))
                                             <div id="rol_confirmation-error" class="error text-danger pl-3"
                                                 for="rol_confirmation" style="display: block;">
                                                 <strong>{{ $errors->first('rol_confirmation') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bmd-form-group{{ $errors->has('image_path') ? ' has-danger' : '' }} mt-3">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="material-icons">upload</i>
+                                            </span>
+                                        </div>
+                                        {!! Form::file('image_path', ['accept' => 'image/*']) !!}
+                                        @if ($errors->has('image_path'))
+                                            <div id="image-error" class="error text-danger pl-3"
+                                                for="image_path" style="display: block;">
+                                                <strong>{{ $errors->first('image_path') }}</strong>
                                             </div>
                                         @endif
                                     </div>

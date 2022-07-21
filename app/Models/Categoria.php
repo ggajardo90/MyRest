@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Categoria extends Model
 {
-    
+
     static $rules = [
 		'nombre' => 'required',
 		'descripcion' => 'required',
@@ -29,7 +29,7 @@ class Categoria extends Model
 		'activa' => 'required',
     ];
 
-    protected $perPage = 5;
+    protected $perPage = 10;
 
     /**
      * Attributes that should be mass-assignable.
@@ -46,6 +46,6 @@ class Categoria extends Model
     {
         return $this->hasMany('App\Models\Producto', 'categoria_id', 'id');
     }
-    
+
 
 }

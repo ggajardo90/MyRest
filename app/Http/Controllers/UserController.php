@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Role;
 use DB;
+use Image;
 
 class UserController extends Controller
 {
@@ -35,7 +37,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        
         $newUser = new CreateNewUser();
         $user = $newUser->create($request->all());
         $user->assignRole($request->input('roles'));
@@ -62,6 +63,13 @@ class UserController extends Controller
         $password = $request->input('password');
         if ($password) {
             $input ['password'] = bcrypt($password);
+        }
+
+        if ($request->hasFile('image_path')){
+            $image_path = $request->file('image_path');
+            $filename = time() . '.' . $image_path->getClientOriginalExtension();
+            Image::make($image_path)->resize(500, 500)->save( public_path('img/profile_images/' . $filename));
+            $input['image_path'] = $filename;
         }
 
         $user = User::find($id);

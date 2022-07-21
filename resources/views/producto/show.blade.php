@@ -14,34 +14,21 @@
                         </div>
 
                         <div class="card-body">
-
-                            {{-- <div class="form-group">
-                                        <strong>Categoria:</strong>
-                                        {{ $producto->categoria->nombre }}
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 ml-auto mr-auto">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <img src="/img/productos/{{ $producto->imagen }}" alt="imagen"
+                                                class="card-img-top img-fluid">
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title"><strong>Precio:</strong> ${{ $producto->precio }}</h4>
+                                            <h4 class="card-title"><strong>Stock:</strong> {{ $producto->stock }}</h4>
+                                            <p><strong>Descripcion:</strong> {{ $producto->descripcion }}
+                                            <br><strong>Activo:</strong> {{ $producto->activo }}</p>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <strong>Nombre:</strong>
-                                        {{ $producto->nombre }}
-                                    </div> --}}
-                            <div class="form-group">
-                                <strong>Precio:</strong>
-                                ${{ $producto->precio }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Descripcion:</strong>
-                                {{ $producto->descripcion }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Stock:</strong>
-                                {{ $producto->stock }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Imagen:</strong>
-                                {{ $producto->imagen }}
-                            </div>
-                            <div class="form-group">
-                                <strong>Activo:</strong>
-                                {{ $producto->activo }}
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">

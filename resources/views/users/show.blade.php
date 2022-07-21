@@ -16,7 +16,9 @@
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 ml-auto mr-auto">
                                     <div class="card text-center">
                                         <div class="card-header">
-                                            <img src="{{ asset('/img/faces/avatar.jpg') }}" alt="image"
+                                            {{-- <img src="{{ asset('/img/faces/avatar.jpg') }}" alt="image"
+                                                class="card-img-top img-fluid"> --}}
+                                            <img src="/img/profile_images/{{ $user->image_path }}" alt="image"
                                                 class="card-img-top img-fluid">
                                         </div>
                                         <div class="card-body">

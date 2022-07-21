@@ -14,7 +14,7 @@ class ProductosTableSeeder extends Seeder
      * @return void
      */
     static $nombres = ['Napolitana','Vaquera','3 Carnes', 'Fetuccini', 'Ceviche Mixto', 'Texana', 'Vegetariana', 'Tallarines'];
-    
+
     public function run()
     {
         foreach (self::$nombres as $nombre) {
@@ -24,7 +24,7 @@ class ProductosTableSeeder extends Seeder
                 'precio' => rand(5000,10000),
                 'stock' => rand(2,8),
                 'descripcion' => 'De Prueba',
-                'imagen' => 'https://imgur.com/HZ4s5vu',
+                'imagen' => 'productodefault.png',
                 'activo' => 1
             ]);
         }

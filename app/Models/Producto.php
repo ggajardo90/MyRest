@@ -25,13 +25,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    
+
     static $rules = [
 		'categoria_id' => 'required',
 		'nombre' => 'required',
 		'precio' => 'required',
 		'descripcion' => 'required',
-    'stock'=> 'required',
+        'stock'=> 'required',
 		'imagen' => 'required',
 		'activo' => 'required',
     ];
@@ -54,6 +54,6 @@ class Producto extends Model
     {
         return $this->hasOne('App\Models\Categoria', 'id', 'categoria_id');
     }
-    
+
 
 }

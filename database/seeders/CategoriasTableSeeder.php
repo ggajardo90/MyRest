@@ -14,14 +14,14 @@ class CategoriasTableSeeder extends Seeder
      * @return void
      */
     static $nombres = ['Pizza´s','Hamburguesas','Tablas', 'Pastas', 'Del mar'];
-    
+
     public function run()
     {
         foreach (self::$nombres as $nombre) {
             DB::table('categorias')->insert([
                 'nombre' => $nombre,
                 'descripcion' => 'De Prueba',
-                'imagen' => 'https://imgur.com/HZ4s5vu',
+                'imagen' => 'categorydefault.png',
                 'activa' => 1
             ]);
         }
