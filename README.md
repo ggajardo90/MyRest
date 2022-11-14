@@ -11,7 +11,7 @@ COMPOSER 2.0
 
 Ejecutar los siguientes comando para obtener el repositorio.
 
-1.- git clone https://github.com/ggajardo90/MyRest.git
+git clone https://github.com/ggajardo90/MyRest.git
 
 2.- Ejecturar desde la terminal los siguientes comandos
 _(instalación de composer y el archivo .env para la base de datos.)_
