@@ -37,7 +37,7 @@
                                             <th>Descripcion</th>
                                             <th>Stock</th>
                                             <th>Imagen</th>
-                                            <th>Activo</th>
+                                            <th class="text-center">Disponible</th>
                                             <th class="text-right">Acciones</th>
                                         </thead>
                                         <tbody>
@@ -49,8 +49,20 @@
                                                     <td>{{ $producto->precio }}</td>
                                                     <td>{{ $producto->descripcion }}</td>
                                                     <td>{{ $producto->stock }}</td>
-                                                    <td>{{ $producto->imagen }}</td>
-                                                    <td>{{ $producto->activo }}</td>
+                                                    <td>
+                                                        <div class="img-container">
+                                                            <img src="/img/productos/{{ $producto->imagen }}"
+                                                                style="width: 100px; heigt: 100px" rel="nofollow" alt="imagen"
+                                                                class="card-img-top img-fluid">
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($producto->activa)
+                                                            <i class="material-icons text-danger">cancel</i>
+                                                        @else
+                                                            <i class="material-icons text-success">check_circle</i>
+                                                        @endif
+                                                    </td>
                                                     <td class="text-right">
                                                         <form action="{{ route('productos.destroy', $producto->id) }}"
                                                             method="POST"
@@ -103,8 +115,11 @@
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                             <div class="card">
 
-                                                <img src="/img/productos/{{ $producto->imagen }}" alt="imagen"
-                                                class="card-img-top img-fluid">
+                                                <div class="img-container text-center">
+                                                    <img src="/img/productos/{{ $producto->imagen }}"
+                                                        style="width: 300px; heigt: 300px" rel="nofollow" alt="imagen"
+                                                        class="card-img-top img-fluid">
+                                                </div>
 
                                                 <div class="card-body">
                                                     <h4 class="card-title"><strong>Nombre:</strong>

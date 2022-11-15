@@ -14,6 +14,16 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
+
+            @can('sales.index')
+                <li class="nav-item{{ $activePage == 'sales' ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ route('sales.create') }}">
+                        <i class="material-icons">local_grocery_store</i>
+                        <p>{{ __('Ventas') }}</p>
+                    </a>
+                </li>
+            @endcan
+
             @can('tables.index')
                 <li class="nav-item{{ $activePage == 'tables' ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('tables.index') }}">

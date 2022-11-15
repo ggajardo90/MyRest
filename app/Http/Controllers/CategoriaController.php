@@ -51,7 +51,7 @@ class CategoriaController extends Controller
         if ($request->hasFile('imagen')){
             $imagen = $request->file('imagen');
             $filename = time() . '.' . $imagen->getClientOriginalExtension();
-            Image::make($imagen)->resize(200, 200)->save( public_path('img/categorias/' . $filename));
+            Image::make($imagen)->resize(300, 300)->save( public_path('img/categorias/' . $filename));
             $requestData['imagen'] = $filename;
         }
 

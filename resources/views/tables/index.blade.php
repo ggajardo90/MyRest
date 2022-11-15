@@ -26,46 +26,49 @@
                                 @endif
                             @endcan
 
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="text-primary">
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Estado</th>
-                                        <th class="text-right">Acciones</th>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($tables as $table)
-                                            <tr>
-                                                <td>{{ $table->id }}</td>
-                                                <td>{{ $table->name }}</td>
-                                                <td>{{ $table->status }}</td>
+                            <table class="table table-hover table-responsive-sm">
+                                <thead class="text-primary">
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th class="text-center">Disponible</th>
+                                    <th class="text-right">Acciones</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($tables as $table)
+                                        <tr>
+                                            <td>{{ $table->id }}</td>
+                                            <td>{{ $table->name }}</td>
+                                            <td class="text-center">
+                                                @if($table->status)
+                                                <i class="material-icons text-danger">cancel</i>
+                                                @else
+                                                <i class="material-icons text-success">check_circle</i>
+                                                @endif
+                                            </td>
 
-                                                <td class="text-right">
-                                                    <form action="{{ route('tables.destroy', $table->id) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una table?')">
-                                                        <a class="btn btn-just-icon btn-primary"
-                                                            href="{{ route('tables.show', $table->id) }}"><i
-                                                                class="fa fa-eye"></i></a>
-                                                        @can('tables.edit')
-                                                            <a class="btn btn-just-icon btn-success"
-                                                                href="{{ route('tables.edit', $table->id) }}"><i
-                                                                    class="fa fa-edit"></i></a>
-                                                        @endcan
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        @can('tables.destroy')
-                                                            <button type="submit" class="btn btn-just-icon btn-danger"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                        @endcan
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                            <td class="text-right">
+                                                <form action="{{ route('tables.destroy', $table->id) }}" method="POST"
+                                                    onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una table?')">
+                                                    <a class="btn btn-just-icon btn-primary"
+                                                        href="{{ route('tables.show', $table->id) }}"><i
+                                                            class="fa fa-eye"></i></a>
+                                                    @can('tables.edit')
+                                                        <a class="btn btn-just-icon btn-success"
+                                                            href="{{ route('tables.edit', $table->id) }}"><i
+                                                                class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    @can('tables.destroy')
+                                                        <button type="submit" class="btn btn-just-icon btn-danger"><i
+                                                                class="fa fa-trash"></i></button>
+                                                    @endcan
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                             <div class="card-footer mr-auto">
                                 {{ $tables->links() }}
                             </div>

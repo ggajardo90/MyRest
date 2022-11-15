@@ -12,9 +12,9 @@ class Sale extends Model
         'payment_status',
     ];
 
-    public function categoria()
+    public function productos()
     {
-        return $this->belongsToMany(Categoria::class);
+        return $this->belongsToMany(Producto::class);
     }
 
     public function tables()

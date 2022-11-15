@@ -22,7 +22,8 @@ class CategoriasTableSeeder extends Seeder
                 'nombre' => $nombre,
                 'descripcion' => 'De Prueba',
                 'imagen' => 'categorydefault.png',
-                'activa' => 1
+                'activa' => 1,
+                'created_at' => now()
             ]);
         }
     }

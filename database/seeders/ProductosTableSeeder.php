@@ -25,7 +25,8 @@ class ProductosTableSeeder extends Seeder
                 'stock' => rand(2,8),
                 'descripcion' => 'De Prueba',
                 'imagen' => 'productodefault.png',
-                'activo' => 1
+                'activo' => 1,
+                'created_at' => now()
             ]);
         }
     }

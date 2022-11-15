@@ -33,7 +33,7 @@
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
                                         <th>Imagen</th>
-                                        <th>Activa</th>
+                                        <th class="text-center">Disponible</th>
                                         <th class="text-right">Acciones</th>
                                     </thead>
                                     <tbody>
@@ -42,8 +42,20 @@
                                                 <td>{{ $categoria->id }}</td>
                                                 <td>{{ $categoria->nombre }}</td>
                                                 <td>{{ $categoria->descripcion }}</td>
-                                                <td>{{ $categoria->imagen }}</td>
-                                                <td>{{ $categoria->activa }}</td>
+                                                <td>
+                                                    <div class="img-container">
+                                                        <img src="/img/categorias/{{ $categoria->imagen }}"
+                                                            style="width: 100px; heigt: 100px" rel="nofollow" alt="imagen"
+                                                            class="card-img-top img-fluid">
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    @if ($categoria->activa)
+                                                        <i class="material-icons text-success">check_circle</i>
+                                                    @else
+                                                        <i class="material-icons text-danger">cancel</i>
+                                                    @endif
+                                                </td>
 
                                                 <td class="text-right">
                                                     <form action="{{ route('categorias.destroy', $categoria->id) }}"
