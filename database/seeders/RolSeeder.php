@@ -38,6 +38,12 @@ class RolSeeder extends Seeder
             ['name' => 'users.show'],           //14
             ['name' => 'users.update'],         //15
             ['name' => 'users.destroy'],        //16
+            ['name' => 'tables.index'],         //17
+            ['name' => 'tables.create'],        //18
+            ['name' => 'tables.edit'],          //19
+            ['name' => 'tables.show'],          //20
+            ['name' => 'tables.update'],        //21
+            ['name' => 'tables.destroy'],       //22
             ['name' => 'perfil.edit'],          //17
             ['name' => 'perfil.editRole'],      //18
         );

@@ -90,7 +90,8 @@
                         <div class="card-body">
                             <h4 class="card-title">Ventas diarias</h4>
                             <p class="card-category">
-                                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> incremento en las ventas de hoy.
+                                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> incremento en las
+                                ventas de hoy.
                             </p>
                         </div>
                         <div class="card-footer">
@@ -138,10 +139,10 @@
 @endsection
 
 @push('js')
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-    });
-  </script>
+    <script>
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            md.initDashboardPageCharts();
+        });
+    </script>
 @endpush

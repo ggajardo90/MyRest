@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name'=>'admin',
             'username'=>'admin',
             'email'=>'admin@test.cl',
+            'email_verified_at'=> now(),
             'password'=>bcrypt('password'),
             'image_path'=>'default.jpg'
         ]);

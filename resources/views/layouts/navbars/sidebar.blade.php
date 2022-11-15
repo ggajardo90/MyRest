@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('img/sidebar-1.jpg') }}">
+<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('/img/sidebar-2.jpg') }}">
     <div class="logo">
         <a href="{{ route('home') }}" class="simple-text logo-normal">
             <img src="{{ asset('/img/favicon.png') }}" width="50" height="50" class="d-inline-block align-top"
@@ -14,6 +14,15 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
+            @can('tables.index')
+                <li class="nav-item{{ $activePage == 'tables' ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ route('tables.index') }}">
+                        <i class="material-icons">table_restaurant</i>
+                        <p>{{ __('Mesas') }}</p>
+                    </a>
+                </li>
+            @endcan
+
             @can('categoria.index')
                 <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('categoria.index') }}">

@@ -50,6 +50,7 @@ class Producto extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+
     public function categoria()
     {
         return $this->hasOne('App\Models\Categoria', 'id', 'categoria_id');

@@ -44,7 +44,7 @@
                                     </div>
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="{{ __('Contraseña...') }}"
-                                        value="{{ !$errors->has('password') ? '' : '' }}" required required
+                                        value="{{ !$errors->has('password') ? '' : '' }}" required
                                         autocomplete="current-password">
                                 </div>
                                 @if ($errors->has('password'))
