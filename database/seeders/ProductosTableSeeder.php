@@ -13,16 +13,32 @@ class ProductosTableSeeder extends Seeder
      *
      * @return void
      */
-    static $nombres = ['Napolitana','Vaquera','3 Carnes', 'Fetuccini', 'Ceviche Mixto', 'Texana', 'Vegetariana', 'Tallarines'];
+    static $nombres = [
+        'Napolitana',
+        'Vaquera',
+        '3 Carnes',
+        'Fetuccini',
+        'Ceviche Mixto',
+        'Texana',
+        'Vegetariana',
+        'Tallarines',
+        'Lomo salteado',
+        'Lasagna',
+        'Coca-Cola',
+        'Fanta',
+        'Jugo Natural',
+        'Heineken',
+        'Mojito'
+    ];
 
     public function run()
     {
         foreach (self::$nombres as $nombre) {
             DB::table('productos')->insert([
-                'categoria_id' => rand(1,5),
+                'categoria_id' => rand(1, 11),
                 'nombre' => $nombre,
-                'precio' => rand(5000,10000),
-                'stock' => rand(2,8),
+                'precio' => rand(5000, 10000),
+                'stock' => rand(2, 8),
                 'descripcion' => 'De Prueba',
                 'imagen' => 'productodefault.png',
                 'activo' => 1,

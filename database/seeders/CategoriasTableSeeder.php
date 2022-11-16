@@ -13,7 +13,7 @@ class CategoriasTableSeeder extends Seeder
      *
      * @return void
      */
-    static $nombres = ['Pizza´s','Hamburguesas','Tablas', 'Pastas', 'Del mar'];
+    static $nombres = ['Pizza´s', 'Hamburguesas', 'Tablas', 'Pastas', 'Mariscos', 'Almuerzos', 'Postres', 'Bebidas', 'Cervezas', 'Tragos', 'Jugos'];
 
     public function run()
     {

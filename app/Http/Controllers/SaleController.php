@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
-use App\Models\Producto;
+use App\Models\Categoria;
 use App\Models\User;
 use App\Models\Table;
 
@@ -34,7 +34,7 @@ class SaleController extends Controller
         //
         return view('sales.create')->with([
             "tables" => Table::all(),
-            "productos" => Producto::all(),
+            "categorias" => Categoria::has('productos')->get(),
             "users" => User::all()
         ]);
     }
