@@ -4,12 +4,11 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Table;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Table>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Categoria>
  */
-class TableFactory extends Factory
+class CategoriaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,9 +19,11 @@ class TableFactory extends Factory
     {
         $name = $this->faker->word();
         return [
-            'name' => $name,
+            'nombre' => $name,
             'slug' => Str::slug($name),
-            'status' => round(random_int(0, 1))
+            'descripcion' => $this->faker->paragraph(1),
+            'imagen' => 'categorydefault.png',
+            'activa' => round(random_int(0, 1))
         ];
     }
 }

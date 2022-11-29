@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Image;
@@ -13,6 +14,10 @@ use Image;
  */
 class TableController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +25,10 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = Table::paginate();
-
-        return view('tables.index', compact('tables'))
-            ->with('i', (request()->input('page', 1) - 1) * $tables->perPage());
+        //
+        return view("tables.index")->with([
+            "tables" => Table::paginate(10)
+        ]);
     }
 
     /**
@@ -34,7 +39,7 @@ class TableController extends Controller
     public function create()
     {
         $table = new Table();
-        return view('tables.create', compact('table'));
+        return view("tables.create", compact("table"));
     }
 
     /**
@@ -45,69 +50,81 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Table::$rules);
-        $requestData = $request->all();
 
-        $table = Table::create($requestData);
-
-        return redirect()->route('tables.index')
-            ->with('success', 'Categoría creada con éxito.');
+        $this->validate($request, [
+            "name" => "required",
+            "status" => "required|boolean"
+        ]);
+        $name = $request->name;
+        Table::create([
+            "name" => $name,
+            "slug" => Str::slug($name),
+            "status" => $request->status
+        ]);
+        return redirect()->route("tables.index")
+            ->with("success", "Mesa creada con éxito.");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Table $table
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Table $table)
     {
-        $table = Table::find($id);
-
-        return view('tables.show', compact('table'));
+        return view("tables.show")->with([
+            "table" => $table
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Table $table
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Table $table)
     {
-        $table = Table::find($id);
-
-        return view('tables.edit', compact('table'));
+        return view("tables.edit")->with([
+            "table" => $table
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Table $tables
+     * @param  \App\Models\Table $table
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Table $table)
     {
-        request()->validate(Table::$rules);
-        $requestData = $request->all();
+        $this->validate($request, [
+            "name" => "required",
+            "status" => "required|boolean"
+        ]);
+        $name = $request->name;
+        $table->update([
+            "name" => $request->name,
+            "slug" => Str::slug($name),
+            "status" => $request->status
+        ]);
 
-        $table->update($requestData);
-
-        return redirect()->route('tables.index')
-            ->with('success', 'Table actualizada correctamente');
+        return redirect()->route("tables.index")
+            ->with("success", "Table actualizada correctamente");
     }
 
     /**
-     * @param int $id
+     * @param  \App\Models\Table   $table
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Table $table)
     {
-        $table = Table::find($id)->delete();
-
-        return redirect()->route('tables.index')
-            ->with('success', 'Table eliminada correctamente');
+        $table->delete();
+        return redirect()->route("tables.index")->with([
+            "success", "Table eliminada correctamente"
+        ]);
     }
 }

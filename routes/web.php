@@ -23,7 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('producto',[App\Http\Controllers\ProductoController::class,'index'])->name('producto.index')->middleware(['can:producto.index','auth']);
 Route::get('categoria',[App\Http\Controllers\CategoriaController::class,'index'])->name('categoria.index')->middleware(['can:categoria.index','auth']);
 Route::get('tables',[App\Http\Controllers\TableController::class,'index'])->name('tables.index')->middleware(['can:tables.index','auth']);
-Route::get('sales',[App\Http\Controllers\TableController::class,'index'])->name('sales.index')->middleware(['can:sales.index','auth']);
+Route::get('sales',[App\Http\Controllers\SaleController::class,'index'])->name('sales.index')->middleware(['can:sales.index','auth']);
 
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');

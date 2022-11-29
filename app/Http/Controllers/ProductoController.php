@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Image;
 
 /**
@@ -14,6 +14,10 @@ use Image;
  */
 class ProductoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,10 +26,9 @@ class ProductoController extends Controller
 
     public function index()
     {
-        $productos = Producto::paginate();
-
-        return view('producto.index', compact('productos'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        return view('producto.index')->with([
+            "productos" => Producto::paginate(10)
+        ]);
     }
 
     /**
@@ -49,20 +52,34 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Producto::$rules);
-        $requestData = $request->all();
+        $this->validate($request, [
+            'categoria_id' => 'required|numeric',
+            'nombre' => 'required',
+            'precio' => 'required|numeric',
+            'descripcion' => 'required',
+            'stock' => 'required|numeric',
+            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'activo' => 'required|boolean'
+        ]);
 
         if ($request->hasFile('imagen')){
-            $imagen = $request->file('imagen');
-            $filename = time() . '.' . $imagen->getClientOriginalExtension();
-            Image::make($imagen)->resize(200, 200)->save( public_path('img/productos/' . $filename));
-            $requestData['imagen'] = $filename;
-        }
-
-        $producto = Producto::create($requestData);
-
-        return redirect()->route('productos.index')
+            $file = $request->imagen;
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(300, 300)->save( public_path('img/productos/' . $imageName));
+            $nombre = $request->nombre;
+            Producto::create([
+                'categoria_id' => $request->categoria_id,
+                'nombre' => $nombre,
+                'slug' => Str::slug($nombre),
+                'precio' => $request->precio,
+                'descripcion' => $request->descripcion,
+                'stock' => $request->stock,
+                'imagen' => $imageName,
+                'activo' => $request->activo
+            ]);
+            return redirect()->route('productos.index')
             ->with('success', 'Producto creado con éxito.');
+        }
     }
 
     /**
@@ -71,11 +88,11 @@ class ProductoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Producto $producto)
     {
-        $producto = Producto::find($id);
-
-        return view('producto.show', compact('producto'));
+        return view('producto.show')->with([
+            "producto" => $producto
+        ]);
     }
 
     /**
@@ -84,11 +101,9 @@ class ProductoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        $producto = Producto::find($id);
         $categorias = Categoria::pluck('nombre','id');
-
         return view('producto.edit', compact('producto', 'categorias'));
     }
 
@@ -101,20 +116,37 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        request()->validate(Producto::$rules);
-        $requestData = $request->all();
+        $this->validate($request, [
+            'categoria_id' => 'required|numeric',
+            'nombre' => 'required',
+            'precio' => 'required|numeric',
+            'descripcion' => 'required',
+            'stock' => 'required|numeric',
+            'imagen' => 'image|mimes:png,jpg,jpeg|max:2048',
+            'activo' => 'required|boolean'
+        ]);
 
         if ($request->hasFile('imagen')){
-            $imagen = $request->file('imagen');
-            $filename = time() . '.' . $imagen->getClientOriginalExtension();
-            Image::make($imagen)->resize(200, 200)->save( public_path('img/productos/' . $filename));
-            $requestData['imagen'] = $filename;
+            $file = $request->imagen;
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(300, 300)->save( public_path('img/productos/' . $imageName));
+            $producto->imagen = $imageName;
         }
-
-        $producto->update($requestData);
-
-        return redirect()->route('productos.index')
-            ->with('success', 'Producto actualizado correctamente');
+            $nombre = $request->nombre;
+            $producto->update([
+                'categoria_id' => $request->categoria_id,
+                'nombre' => $nombre,
+                'slug' => Str::slug($nombre),
+                'precio' => $request->precio,
+                'descripcion' => $request->descripcion,
+                'stock' => $request->stock,
+                'imagen' => $producto->imagen,
+                'activo' => $request->activo
+            ]);
+            return redirect()->route('productos.index')
+            ->with([
+                'success', 'Producto actualizado con éxito.'
+            ]);
     }
 
     /**
@@ -122,10 +154,9 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        $producto = Producto::find($id)->delete();
-
+        $producto->delete();
         return redirect()->route('productos.index')
             ->with('success', 'Producto eliminado correctamente');
     }

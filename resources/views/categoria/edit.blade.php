@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('categorias.update', $categoria->id) }}" method="post" role="form"
+                    <form action="{{ route('categorias.update', $categoria->slug) }}" method="post" role="form"
                         enctype="multipart/form-data">
 
                         <div class="card">

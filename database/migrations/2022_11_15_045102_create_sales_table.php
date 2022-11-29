@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('quantity');
-            $table->decimal('price', 8, 2);
-            $table->decimal('total', 8, 2);
-            $table->decimal('change', 8, 2)->default(0);
+            $table->decimal('price', 8, 0);
+            $table->decimal('total', 8, 0);
+            $table->decimal('change', 8, 0)->default(0);
             $table->string('payment_type')->default('cash');
             $table->string('payment_status')->default('paid');
             $table->timestamps();

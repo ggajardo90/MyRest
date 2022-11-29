@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -67,7 +71,6 @@ class SaleController extends Controller
         $sale->payment_status = $request->payment_status;
         $sale->payment_type = $request->payment_type;
         $sale->save();
-
         $sale->productos()->sync($request->producto_id);
         $sale->tables()->sync($request->table_id);
         $sale->tables()->update([
@@ -98,7 +101,7 @@ class SaleController extends Controller
     public function edit(Sale $sale)
     {
         //
-        return view('sales.create')->with([
+        return view('sales.edit')->with([
             'tables' => $sale->tables()->where('sale_id', $sale->id)->get(),
             'productos' => $sale->productos()->where('sale_id', $sale->id)->get(),
             'users' => User::all(),
@@ -134,7 +137,6 @@ class SaleController extends Controller
         $sale->payment_status = $request->payment_status;
         $sale->payment_type = $request->payment_type;
         $sale->update();
-
         $sale->productos()->sync($request->producto_id);
         $sale->tables()->sync($request->table_id);
         return redirect()->back()->with([

@@ -5,18 +5,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('tables.update', $table->id) }}" method="POST" role="form"
-                        enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('tables.update', $table->slug) }}">
 
                         <div class="card">
                             <div class="card-header card-header-warning">
                                 <h3 class="card-title text-dark">Mesas</h3>
-                                    <p class="card-category text-dark">Ingresar datos</p>
+                                <p class="card-category text-dark">Ingresar datos</p>
                             </div>
                             <div class="card-body">
-                                {{ method_field('PATCH') }}
                                 @csrf
-
+                                @method("PUT")
                                 @include('tables.form')
                             </div>
                             <div class="card-footer ml-auto mr-auto">

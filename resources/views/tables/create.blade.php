@@ -5,8 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('tables.store') }}" method="post" role="form" enctype="multipart/form-data"
-                        class="form-horizontals">
+                    <form action="{{ route('tables.store') }}" method="POST">
                         @csrf
                         <div class="card">
                             <div class="card-header card-header-warning">

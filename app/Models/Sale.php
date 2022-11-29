@@ -9,7 +9,7 @@ class Sale extends Model
     protected $fillable = [
         'user_id', 'quantity', 'price',
         'total', 'change', 'payment_type',
-        'payment_status',
+        'payment_status'
     ];
 
     public function productos()
@@ -22,9 +22,9 @@ class Sale extends Model
         return $this->belongsToMany(Table::class);
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
 }

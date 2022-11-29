@@ -18,6 +18,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('nombre');
+            $table->string('slug');
             $table->string('descripcion');
             $table->string('imagen');
             $table->boolean('activa')->default(0);

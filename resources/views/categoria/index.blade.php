@@ -58,15 +58,15 @@
                                                 </td>
 
                                                 <td class="text-right">
-                                                    <form action="{{ route('categorias.destroy', $categoria->id) }}"
+                                                    <form action="{{ route('categorias.destroy', $categoria->slug) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
                                                         <a class="btn btn-just-icon btn-primary"
-                                                            href="{{ route('categorias.show', $categoria->id) }}"><i
+                                                            href="{{ route('categorias.show', $categoria->slug) }}"><i
                                                                 class="fa fa-eye"></i></a>
                                                         @can('categoria.edit')
                                                             <a class="btn btn-just-icon btn-success"
-                                                                href="{{ route('categorias.edit', $categoria->id) }}"><i
+                                                                href="{{ route('categorias.edit', $categoria->slug) }}"><i
                                                                     class="fa fa-edit"></i></a>
                                                         @endcan
                                                         @csrf

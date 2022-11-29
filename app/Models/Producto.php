@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Producto
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $categoria_id
  * @property $nombre
+ * @property $slug
  * @property $precio
  * @property $descripcion
  * @property $stock
@@ -25,26 +27,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-
-    static $rules = [
-		'categoria_id' => 'required',
-		'nombre' => 'required',
-		'precio' => 'required',
-		'descripcion' => 'required',
-        'stock'=> 'required',
-		'imagen' => 'required',
-		'activo' => 'required',
-    ];
-
-    protected $perPage = 10;
-    protected $table = 'productos';
+    use HasFactory;
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['categoria_id','nombre','precio','descripcion','stock','imagen','activo'];
+    protected $fillable = ['categoria_id','nombre','slug','precio','descripcion','stock','imagen','activo'];
 
 
     /**
@@ -53,8 +43,16 @@ class Producto extends Model
 
     public function categoria()
     {
-        return $this->hasOne('App\Models\Categoria', 'id', 'categoria_id');
+        return $this->belongsTo(Categoria::class);
     }
 
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class);
+    }
 
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
 }

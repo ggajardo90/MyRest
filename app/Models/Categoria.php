@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Categoria
  *
  * @property $id
  * @property $nombre
+ * @property $slug
  * @property $descripcion
  * @property $imagen
  * @property $activa
@@ -21,23 +23,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Categoria extends Model
 {
-
-    static $rules = [
-		'nombre' => 'required',
-		'descripcion' => 'required',
-		'imagen' => 'required',
-		'activa' => 'required',
-    ];
-
-    protected $perPage = 10;
-
+    use HasFactory;
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['nombre','descripcion','imagen','activa'];
+    protected $fillable = ['nombre','slug','descripcion','imagen','activa'];
 
+    protected $perPage = 10;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -47,5 +41,9 @@ class Categoria extends Model
         return $this->hasMany('App\Models\Producto', 'categoria_id', 'id');
     }
 
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
 
 }

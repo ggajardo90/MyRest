@@ -39,22 +39,23 @@
                                             <td>{{ $table->id }}</td>
                                             <td>{{ $table->name }}</td>
                                             <td class="text-center">
-                                                @if($table->status)
-                                                <i class="material-icons text-danger">cancel</i>
+                                                @if ($table->status)
+                                                    <i class="material-icons text-danger">cancel</i>
                                                 @else
-                                                <i class="material-icons text-success">check_circle</i>
+                                                    <i class="material-icons text-success">check_circle</i>
                                                 @endif
                                             </td>
 
                                             <td class="text-right">
-                                                <form action="{{ route('tables.destroy', $table->id) }}" method="POST"
-                                                    onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una table?')">
-                                                    <a class="btn btn-just-icon btn-primary"
-                                                        href="{{ route('tables.show', $table->id) }}"><i
-                                                            class="fa fa-eye"></i></a>
+                                                {{-- <a class="btn btn-just-icon btn-primary"
+                                                    href="{{ route('tables.show', $table->slug) }}"><i
+                                                        class="fa fa-eye"></i></a> --}}
+
+                                                <form action="{{ route('tables.destroy', $table->slug) }}" method="POST"
+                                                    onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una mesa?')">
                                                     @can('tables.edit')
                                                         <a class="btn btn-just-icon btn-success"
-                                                            href="{{ route('tables.edit', $table->id) }}"><i
+                                                            href="{{ route('tables.edit', $table->slug) }}"><i
                                                                 class="fa fa-edit"></i></a>
                                                     @endcan
                                                     @csrf

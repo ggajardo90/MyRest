@@ -64,15 +64,15 @@
                                                         @endif
                                                     </td>
                                                     <td class="text-right">
-                                                        <form action="{{ route('productos.destroy', $producto->id) }}"
+                                                        <form action="{{ route('productos.destroy', $producto->slug) }}"
                                                             method="POST"
                                                             onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
                                                             <a class="btn btn-just-icon btn-primary "
-                                                                href="{{ route('productos.show', $producto->id) }}"><i
+                                                                href="{{ route('productos.show', $producto->slug) }}"><i
                                                                     class="fa fa-eye"></i></a>
                                                             @can('producto.edit')
                                                                 <a class="btn btn-just-icon btn-success"
-                                                                    href="{{ route('productos.edit', $producto->id) }}"><i
+                                                                    href="{{ route('productos.edit', $producto->slug) }}"><i
                                                                         class="fa fa-fw fa-edit"></i></a>
                                                             @endcan
                                                             @csrf
@@ -132,16 +132,16 @@
                                                         ${{ $producto->precio }} CLP</h4>
                                                 </div>
                                                 <div class="card-footer ml-auto mr-auto">
-                                                    <form action="{{ route('productos.destroy', $producto->id) }}"
+                                                    <form action="{{ route('productos.destroy', $producto->slug) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Producto?')">
                                                         <a class="btn btn-primary btn-sm"
-                                                            href="{{ route('productos.show', $producto->id) }}"><i
+                                                            href="{{ route('productos.show', $producto->slug) }}"><i
                                                                 class="fa fa-fw fa-eye"></i></a>
 
                                                         @can('producto.edit')
                                                             <a class="btn btn-success btn-sm"
-                                                                href="{{ route('productos.edit', $producto->id) }}"><i
+                                                                href="{{ route('productos.edit', $producto->slug) }}"><i
                                                                     class="fa fa-fw fa-edit"></i></a>
                                                         @endcan
 

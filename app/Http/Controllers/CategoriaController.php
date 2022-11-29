@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Str;
 use Image;
 
 /**
@@ -13,6 +14,10 @@ use Image;
  */
 class CategoriaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +25,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::paginate();
-
-        return view('categoria.index', compact('categorias'))
-            ->with('i', (request()->input('page', 1) - 1) * $categorias->perPage());
+        return view('categoria.index')->with([
+            'categorias' => Categoria::paginate(10)
+        ]);
     }
 
     /**
@@ -45,20 +49,28 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Categoria::$rules);
-        $requestData = $request->all();
-
+        $this->validate($request,[
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'activa' => 'required',
+        ]);
         if ($request->hasFile('imagen')){
-            $imagen = $request->file('imagen');
-            $filename = time() . '.' . $imagen->getClientOriginalExtension();
-            Image::make($imagen)->resize(300, 300)->save( public_path('img/categorias/' . $filename));
-            $requestData['imagen'] = $filename;
+            $file = $request->imagen;
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(300, 300)->save( public_path('img/categorias/' . $imageName));
+            $nombre = $request->nombre;
+            Categoria::create([
+                'nombre' => $nombre,
+                'slug' => Str::slug($nombre),
+                'descripcion' => $request->descripcion,
+                'imagen' => $imageName,
+                'activa' => $request->activa,
+            ]);
+            return redirect()->route('categorias.index')
+            ->with('success', 'Categoría creada con éxito.');
         }
 
-        $categoria = Categoria::create($requestData);
-
-        return redirect()->route('categorias.index')
-            ->with('success', 'Categoría creada con éxito.');
     }
 
     /**
@@ -67,11 +79,13 @@ class CategoriaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Categoria $categoria)
     {
-        $categoria = Categoria::find($id);
+        //$categoria = Categoria::find($id);
 
-        return view('categoria.show', compact('categoria'));
+        return view('categoria.show')->with([
+            'categoria' => $categoria
+        ]);
     }
 
     /**
@@ -80,11 +94,11 @@ class CategoriaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Categoria $categoria)
     {
-        $categoria = Categoria::find($id);
-
-        return view('categoria.edit', compact('categoria'));
+        return view('categoria.edit')->with([
+            'categoria' => $categoria
+        ]);
     }
 
     /**
@@ -96,31 +110,38 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        request()->validate(Categoria::$rules);
-        $requestData = $request->all();
-
+        $this->validate($request,[
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'activa' => 'required',
+        ]);
         if ($request->hasFile('imagen')){
-            $imagen = $request->file('imagen');
-            $filename = time() . '.' . $imagen->getClientOriginalExtension();
-            Image::make($imagen)->resize(200, 200)->save( public_path('img/categorias/' . $filename));
-            $requestData['imagen'] = $filename;
+            $file = $request->imagen;
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(300, 300)->save( public_path('img/categorias/' . $imageName));
+            $nombre = $request->nombre;
+            $categoria->update([
+                'nombre' => $nombre,
+                'slug' => Str::slug($nombre),
+                'descripcion' => $request->descripcion,
+                'imagen' => $imageName,
+                'activa' => $request->activa,
+            ]);
+            return redirect()->route('categorias.index')
+            ->with('success', 'Categoría actualizada con exito.');
         }
-
-        $categoria->update($requestData);
-
-        return redirect()->route('categorias.index')
-            ->with('success', 'Categoria actualizada correctamente');
     }
 
     /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * Remove the specified resource from storage
+     *
+     * @param \App\Categoria $categoria
+     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Categoria $categoria)
     {
-        $categoria = Categoria::find($id)->delete();
-
+        $categoria->delete();
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria eliminada correctamente');
     }

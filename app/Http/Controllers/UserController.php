@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Fortify\CreateNewUser;
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
-use Spatie\Permission\Models\Role;
 use DB;
-use Image;
+use App\Models\User;
+use App\Http\Requests;
+use Nette\Utils\Image;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+use App\Actions\Fortify\CreateNewUser;
 
 class UserController extends Controller
 {
