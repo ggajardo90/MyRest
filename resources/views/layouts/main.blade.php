@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,12 @@
     <title> {{ __('Software para restaurantes | MyRest') }}</title>
     <link rel="myrestlogo" sizes="192x192" href="{{ asset('/img/favicon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
     <!--     Iconos y fuentes     -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
     <!-- Styles -->
@@ -24,7 +27,7 @@
         @include('layouts.page_templates.guest')
     @else
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
+            @csrf
         </form>
         @include('layouts.page_templates.auth')
     @endguest
@@ -35,7 +38,7 @@
     <script src="{{ asset('js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script> --}}
     <!-- Plugin for the momentJs  -->
     <script src="{{ asset('js/plugins/moment.min.js') }}"></script>
     <!--  Plugin for Sweet Alert -->
@@ -74,4 +77,5 @@
     @stack('js')
 
 </body>
+
 </html>

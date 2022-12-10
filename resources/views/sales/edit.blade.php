@@ -103,7 +103,7 @@
                                                 <div class="form-group">
                                                     <select name="payment_status" class="form-control">
                                                         <option value="" selected disabled>
-                                                            Metodo de pago
+                                                            Estado de pago
                                                         </option>
                                                         <option {{ $sale->payment_status === 'paid' ? 'selected' : '' }}
                                                             value="paid">

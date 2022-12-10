@@ -23,15 +23,17 @@
                                 </div>
                             @endif
 
-                            <div class="table-responsive">
+                            <div class="table-responsive-sm">
                                 <table class="table table-hover">
                                     <thead class="text-primary">
-                                        <th>ID</th>
-                                        <th>Nombre y Apellido</th>
-                                        <th>Correo</th>
-                                        <th>Nombre de usuario</th>
-                                        <th>Rol/es</th>
-                                        <th class="text-right">Acciones</th>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre y Apellido</th>
+                                            <th>Correo</th>
+                                            <th>Nombre de usuario</th>
+                                            <th>Rol/es</th>
+                                            <th class="text-right">Acciones</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
@@ -48,13 +50,12 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    <form action="{{ route('users.destroy', $user->id) }}"
-                                                        method="POST"
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                                         onsubmit="return confirm('¿Estas Seguro que deseas Eliminar un Usuario?')">
                                                         <a class="btn btn-just-icon btn-primary"
                                                             href="{{ route('users.show', $user->id) }}"><i
                                                                 class="fa fa-eye"></i></a>
-                                                                @csrf
+                                                        @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-just-icon btn-danger"><i
                                                                 class="fa fa-trash"></i></button>

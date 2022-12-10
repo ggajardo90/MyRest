@@ -15,6 +15,15 @@
                 </a>
             </li>
 
+            @can('reports.index')
+                <li class="nav-item{{ $activePage == 'reports' ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ route('reports.index') }}">
+                        <i class="material-icons">insert_chart</i>
+                        <p>{{ __('Reportes') }}</p>
+                    </a>
+                </li>
+            @endcan
+
             @can('sales.index')
                 <li class="nav-item{{ $activePage == 'sales' ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('sales.create') }}">

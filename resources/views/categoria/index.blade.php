@@ -26,15 +26,17 @@
                                 @endif
                             @endcan
 
-                            <div class="table-responsive">
+                            <div class="table-responsive-sm">
                                 <table class="table table-hover">
                                     <thead class="text-primary">
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Imagen</th>
-                                        <th class="text-center">Disponible</th>
-                                        <th class="text-right">Acciones</th>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Imagen</th>
+                                            <th class="text-center">Disponible</th>
+                                            <th class="text-right">Acciones</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($categorias as $categoria)
@@ -82,9 +84,13 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="card-footer mr-auto">
-                                {{ $categorias->links() }}
-                            </div>
+                        </div>
+                        <div class="card-footer flex-column justify-content-center align-items-center">
+
+                            <ul class="pagination">
+                                <li>{{ $categorias->links() }}</li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>

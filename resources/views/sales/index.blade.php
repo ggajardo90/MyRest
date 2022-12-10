@@ -27,17 +27,19 @@
                             @endif
 
 
-                            <div class="table-responsive">
+                            <div class="table-responsive-sm">
                                 <table class="table table-hover">
                                     <thead class="text-primary">
-                                        <th>ID</th>
-                                        <th>Producto</th>
-                                        <th>Table</th>
-                                        <th>Mesero</th>
-                                        <th>Cantidad</th>
-                                        <th>Total</th>
-                                        <th>Metodo de pago</th>
-                                        <th>Estado de pago</th>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Producto/s</th>
+                                            <th>Mesa</th>
+                                            <th>Mesero</th>
+                                            <th>Cantidad</th>
+                                            <th>Total</th>
+                                            <th>Metodo de pago</th>
+                                            <th>Estado de pago</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($sales as $sale)
@@ -53,19 +55,30 @@
                                                         </h5>
                                                     @endforeach
                                                 </td>
-                                                <td>{{ $producto->descripcion }}</td>
-                                                <td>{{ $producto->stock }}</td>
+                                                <td>
+                                                    @foreach ($sale->tables()->where('sale_id', $sale->id)->get() as $table)
+                                                        <div
+                                                            class="mb-1 d-flex flex-column justify-content-center align-items-center">
+                                                            <i class="material-icons fa-3x">table_restaurant</i>
+                                                            <span class="mt-2 text-muted">
+                                                                {{ $table->name }}
+                                                            </span>
+
+                                                        </div>
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ $sale->user->name }}</td>
+                                                <td>{{ $sale->quantity }}</td>
+                                                <td>{{ $sale->total }}</td>
+                                                <td>{{ $sale->payment_type }}</td>
+                                                <td>{{ $sale->payment_status }}</td>
 
                                                 <td class="text-right">
-                                                    <form action="{{ route('productos.destroy', $producto->slug) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
-                                                        <a class="btn btn-just-icon btn-primary "
-                                                            href="{{ route('productos.show', $producto->slug) }}"><i
-                                                                class="fa fa-eye"></i></a>
+                                                    <form action="{{ route('sales.destroy', $sale->id) }}" method="POST"
+                                                        onsubmit="return confirm('¿Estas seguro que quieres eliminar esa venta?')">
 
                                                         <a class="btn btn-just-icon btn-success"
-                                                            href="{{ route('productos.edit', $producto->slug) }}"><i
+                                                            href="{{ route('sales.edit', $sale->id) }}"><i
                                                                 class="fa fa-fw fa-edit"></i></a>
 
                                                         @csrf
@@ -80,6 +93,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $sales->links() }}
+                                </div>
                             </div>
 
                         </div>

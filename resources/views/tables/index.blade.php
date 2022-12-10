@@ -28,10 +28,12 @@
 
                             <table class="table table-hover table-responsive-sm">
                                 <thead class="text-primary">
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th class="text-center">Disponible</th>
-                                    <th class="text-right">Acciones</th>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th class="text-center">Disponible</th>
+                                        <th class="text-right">Acciones</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($tables as $table)

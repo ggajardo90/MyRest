@@ -2125,6 +2125,7 @@ progress {
   .table-responsive-sm {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    max-width: none;
   }
 }
 @media (max-width: 767.98px) {
