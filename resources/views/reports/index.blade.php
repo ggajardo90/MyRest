@@ -89,7 +89,7 @@
                                 </div>
                                 <p class="text-danger text-center font-weight">
                                     <span class="border border-danger p-2">
-                                        Total: $ {{ $total }}
+                                        Total: $ {{ number_format($total, 0, ',', '.') }}
                                     </span>
                                 </p>
                                 <form action="{{ route('reports.generate') }}" method="POST">

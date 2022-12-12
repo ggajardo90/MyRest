@@ -45,10 +45,10 @@
         @endforeach
         <tr>
             <td colspan="5">
-                Report From {{ $startDate }} to {{ $endDate }}
+                Informe de ventas del {{ $startDate }} al {{ $endDate }}
             </td>
             <td>
-                Total: $ {{ $total }}
+                Total: $ {{ number_format($total, 0, ',', '.') }}
             </td>
         </tr>
     </tbody>

@@ -41,17 +41,8 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="laravelExample">
+                <div class="collapse" id="laravelExample">
                     <ul class="nav">
-                        @can('tables.index')
-                            <li class="nav-item{{ $activePage == 'tables' ? ' active' : '' }}">
-                                <a class="nav-link" href="{{ route('tables.index') }}">
-                                    <i class="material-icons">table_restaurant</i>
-                                    <p>{{ __('Mesas') }}</p>
-                                </a>
-                            </li>
-                        @endcan
-
                         @can('categoria.index')
                             <li class="nav-item{{ $activePage == 'categorias' ? ' active' : '' }}">
                                 <a class="nav-link" href="{{ route('categoria.index') }}">
@@ -65,6 +56,14 @@
                                 <a class="nav-link" href="{{ route('producto.index') }}">
                                     <i class="material-icons">restaurant</i>
                                     <p>{{ __('Productos') }}</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('tables.index')
+                            <li class="nav-item{{ $activePage == 'tables' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route('tables.index') }}">
+                                    <i class="material-icons">table_restaurant</i>
+                                    <p>{{ __('Mesas') }}</p>
                                 </a>
                             </li>
                         @endcan
