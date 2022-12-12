@@ -17,7 +17,7 @@ class CategoriaFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->word();
+        $name = $this->faker->firstNameMale();
         return [
             'nombre' => $name,
             'slug' => Str::slug($name),

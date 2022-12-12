@@ -39,7 +39,7 @@ class ProductoController extends Controller
     public function create()
     {
         $producto = new Producto();
-        $categorias = Categoria::pluck('nombre','id');
+        $categorias = Categoria::pluck('nombre', 'id');
 
         return view('producto.create', compact('producto', 'categorias'));
     }
@@ -62,10 +62,10 @@ class ProductoController extends Controller
             'activo' => 'required|boolean'
         ]);
 
-        if ($request->hasFile('imagen')){
+        if ($request->hasFile('imagen')) {
             $file = $request->imagen;
             $imageName = time() . '.' . $file->getClientOriginalExtension();
-            Image::make($file)->resize(300, 300)->save( public_path('img/productos/' . $imageName));
+            Image::make($file)->resize(300, 300)->save(public_path('img/productos/' . $imageName));
             $nombre = $request->nombre;
             Producto::create([
                 'categoria_id' => $request->categoria_id,
@@ -78,7 +78,7 @@ class ProductoController extends Controller
                 'activo' => $request->activo
             ]);
             return redirect()->route('productos.index')
-            ->with('success', 'Producto creado con éxito.');
+                ->with('success', 'Producto creado con éxito.');
         }
     }
 
@@ -103,7 +103,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        $categorias = Categoria::pluck('nombre','id');
+        $categorias = Categoria::pluck('nombre', 'id');
         return view('producto.edit', compact('producto', 'categorias'));
     }
 
@@ -126,27 +126,26 @@ class ProductoController extends Controller
             'activo' => 'required|boolean'
         ]);
 
-        if ($request->hasFile('imagen')){
+        if ($request->hasFile('imagen')) {
             $file = $request->imagen;
             $imageName = time() . '.' . $file->getClientOriginalExtension();
-            Image::make($file)->resize(300, 300)->save( public_path('img/productos/' . $imageName));
+            Image::make($file)->resize(300, 300)->save(public_path('img/productos/' . $imageName));
             $producto->imagen = $imageName;
         }
-            $nombre = $request->nombre;
-            $producto->update([
-                'categoria_id' => $request->categoria_id,
-                'nombre' => $nombre,
-                'slug' => Str::slug($nombre),
-                'precio' => $request->precio,
-                'descripcion' => $request->descripcion,
-                'stock' => $request->stock,
-                'imagen' => $producto->imagen,
-                'activo' => $request->activo
-            ]);
-            return redirect()->route('productos.index')
-            ->with([
-                'success', 'Producto actualizado con éxito.'
-            ]);
+
+        $nombre = $request->nombre;
+        $producto->update([
+            'categoria_id' => $request->categoria_id,
+            'nombre' => $nombre,
+            'slug' => Str::slug($nombre),
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion,
+            'stock' => $request->stock,
+            'imagen' => $producto->imagen,
+            'activo' => $request->activo
+        ]);
+        return redirect()->route('productos.index')
+            ->with('success', 'Producto actualizado con éxito.');
     }
 
     /**

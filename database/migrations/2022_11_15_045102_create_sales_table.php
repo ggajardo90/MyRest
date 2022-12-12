@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('price', 8, 0);
             $table->decimal('total', 8, 0);
             $table->decimal('change', 8, 0)->default(0);
-            $table->string('payment_type')->default('cash');
-            $table->string('payment_status')->default('paid');
+            $table->string('payment_type')->default('efectivo');
+            $table->string('payment_status')->default('pagado');
             $table->timestamps();
         });
     }

@@ -49,16 +49,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'nombre' => 'required',
             'descripcion' => 'required',
             'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             'activa' => 'required',
         ]);
-        if ($request->hasFile('imagen')){
+        if ($request->hasFile('imagen')) {
             $file = $request->imagen;
             $imageName = time() . '.' . $file->getClientOriginalExtension();
-            Image::make($file)->resize(300, 300)->save( public_path('img/categorias/' . $imageName));
+            Image::make($file)->resize(300, 300)->save(public_path('img/categorias/' . $imageName));
             $nombre = $request->nombre;
             Categoria::create([
                 'nombre' => $nombre,
@@ -68,9 +68,8 @@ class CategoriaController extends Controller
                 'activa' => $request->activa,
             ]);
             return redirect()->route('categorias.index')
-            ->with('success', 'Categoría creada con éxito.');
+                ->with('success', 'Categoría creada con éxito.');
         }
-
     }
 
     /**
@@ -110,27 +109,29 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'nombre' => 'required',
             'descripcion' => 'required',
-            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'imagen' => 'image|mimes:png,jpg,jpeg,webp|max:2048',
             'activa' => 'required',
         ]);
-        if ($request->hasFile('imagen')){
+
+        if ($request->hasFile('imagen')) {
             $file = $request->imagen;
             $imageName = time() . '.' . $file->getClientOriginalExtension();
-            Image::make($file)->resize(300, 300)->save( public_path('img/categorias/' . $imageName));
-            $nombre = $request->nombre;
-            $categoria->update([
-                'nombre' => $nombre,
-                'slug' => Str::slug($nombre),
-                'descripcion' => $request->descripcion,
-                'imagen' => $imageName,
-                'activa' => $request->activa,
-            ]);
-            return redirect()->route('categorias.index')
-            ->with('success', 'Categoría actualizada con exito.');
+            Image::make($file)->resize(300, 300)->save(public_path('img/categorias/' . $imageName));
+            $categoria->imagen = $imageName;
         }
+        $nombre = $request->nombre;
+        $categoria->update([
+            'nombre' => $nombre,
+            'slug' => Str::slug($nombre),
+            'descripcion' => $request->descripcion,
+            'imagen' => $categoria->imagen,
+            'activa' => $request->activa,
+        ]);
+        return redirect()->route('categorias.index')
+            ->with('success', 'Categoría actualizada con exito.');
     }
 
     /**

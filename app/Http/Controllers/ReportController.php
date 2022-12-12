@@ -29,7 +29,7 @@ class ReportController extends Controller
         ]);
         $startDate = date("Y-m-d H:i:s", strtotime($request->from . "00:00:00"));
         $endDate = date("Y-m-d H:i:s", strtotime($request->to . "23:59:59"));
-        $sales = Sale::whereBetween("updated_at", [$startDate, $endDate])->where("payment_status", "paid");
+        $sales = Sale::whereBetween("updated_at", [$startDate, $endDate])->where("payment_status", "pagado");
         return view("reports.index")->with([
             "startDate" => $startDate,
             "endDate" => $endDate,

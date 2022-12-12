@@ -52,7 +52,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,[
+        $this->validate($request, [
             "table_id" => 'required',
             "producto_id" => 'required',
             'user_id' => 'required',
@@ -119,7 +119,7 @@ class SaleController extends Controller
     public function update(Request $request, Sale $sale)
     {
         //
-        $this->validate($request,[
+        $this->validate($request, [
             "table_id" => 'required',
             "producto_id" => 'required',
             'user_id' => 'required',

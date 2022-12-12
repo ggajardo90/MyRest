@@ -8,7 +8,7 @@
 <div class="row">
     {{ Form::label('nombre', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::text('nombre', $producto->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre']) }}
+        {{ Form::text('nombre', old('nombre', $producto->nombre), ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre']) }}
         {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>

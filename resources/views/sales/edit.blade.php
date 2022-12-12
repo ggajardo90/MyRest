@@ -90,12 +90,12 @@
                                                         <option value="" selected disabled>
                                                             Metodo de pago
                                                         </option>
-                                                        <option {{ $sale->payment_type === 'cash' ? 'selected' : '' }}
-                                                            value="cash">
+                                                        <option {{ $sale->payment_type === 'efectivo' ? 'selected' : '' }}
+                                                            value="efectivo">
                                                             Efectivo
                                                         </option>
-                                                        <option {{ $sale->payment_type === 'card' ? 'selected' : '' }}
-                                                            value="card">
+                                                        <option {{ $sale->payment_type === 'tarjeta' ? 'selected' : '' }}
+                                                            value="tarjeta">
                                                             Tarjeta
                                                         </option>
                                                     </select>
@@ -105,13 +105,13 @@
                                                         <option value="" selected disabled>
                                                             Estado de pago
                                                         </option>
-                                                        <option {{ $sale->payment_status === 'paid' ? 'selected' : '' }}
-                                                            value="paid">
+                                                        <option {{ $sale->payment_status === 'pagado' ? 'selected' : '' }}
+                                                            value="pagado">
                                                             Pagado
                                                         </option>
-                                                        <option {{ $sale->payment_status === 'unpaid' ? 'selected' : '' }}
-                                                            value="unpaid">
-                                                            No pagado
+                                                        <option {{ $sale->payment_status === 'pendiente' ? 'selected' : '' }}
+                                                            value="pendiente">
+                                                            Pendiente
                                                         </option>
                                                     </select>
                                                 </div>

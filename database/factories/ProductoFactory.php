@@ -18,12 +18,12 @@ class ProductoFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->word();
+        $name = $this->faker->lastName();
         return [
             'categoria_id' => Categoria::all()->random()->id,
             'nombre' => $name,
             'slug' => Str::slug($name),
-            'precio' => $this->faker->numberBetween($min = 100,$max = 500),
+            'precio' => $this->faker->numberBetween($min = 5000,$max = 25000),
             'stock' => round(random_int(1, 20)),
             'descripcion' => $this->faker->paragraph(1),
             'imagen' => 'productodefault.png',

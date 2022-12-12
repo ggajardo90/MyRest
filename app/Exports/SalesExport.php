@@ -17,7 +17,7 @@ class SalesExport implements FromView
     {
         $this->to = $to;
         $this->from = $from;
-        $this->sales = $sales = Sale::whereBetween("updated_at", [$from, $to])->where("payment_status", "paid")->get();
+        $this->sales = $sales = Sale::whereBetween("updated_at", [$from, $to])->where("payment_status", "pagado")->get();
         $this->total = $this->sales->sum("total");
     }
 

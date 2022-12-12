@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> {{ __('Software para restaurantes | MyRest') }}</title>
     <link rel="myrestlogo" sizes="192x192" href="{{ asset('/img/favicon.png') }}">
@@ -15,10 +17,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet" />
 </head>
 
@@ -33,12 +35,12 @@
     @endguest
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <!--   Core JS Files   -->
     <script src="{{ asset('js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
-    {{-- <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script> --}}
+    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <!-- Plugin for the momentJs  -->
     <script src="{{ asset('js/plugins/moment.min.js') }}"></script>
     <!--  Plugin for Sweet Alert -->
@@ -73,7 +75,6 @@
     <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('js/material-dashboard.js?v=2.1.1') }}" type="text/javascript"></script>
-
     @stack('js')
 
 </body>
