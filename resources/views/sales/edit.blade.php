@@ -109,7 +109,8 @@
                                                             value="pagado">
                                                             Pagado
                                                         </option>
-                                                        <option {{ $sale->payment_status === 'pendiente' ? 'selected' : '' }}
+                                                        <option
+                                                            {{ $sale->payment_status === 'pendiente' ? 'selected' : '' }}
                                                             value="pendiente">
                                                             Pendiente
                                                         </option>

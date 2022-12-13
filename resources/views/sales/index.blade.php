@@ -15,8 +15,8 @@
                         <div class="card-body">
 
                             <div class="col-12 text-right">
-                                <a href="{{ route('sales.create') }}" class="btn btn-warning">Nuevo
-                                    Producto</a>
+                                <a href="{{ route('sales.create') }}" class="btn btn-warning">Nueva Venta
+                                </a>
                             </div>
                             @if ($message = Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -40,6 +40,7 @@
                                             <th>Total</th>
                                             <th>Metodo de pago</th>
                                             <th>Estado de pago</th>
+                                            <th>Fecha de venta</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,6 +74,7 @@
                                                 <td>{{ $sale->total }}</td>
                                                 <td>{{ $sale->payment_type }}</td>
                                                 <td>{{ $sale->payment_status }}</td>
+                                                <td>{{ $sale->created_at }}</td>
 
                                                 <td class="text-right">
                                                     <form action="{{ route('sales.destroy', $sale->id) }}" method="POST"

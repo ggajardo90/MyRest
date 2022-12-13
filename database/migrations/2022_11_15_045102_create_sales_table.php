@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('quantity');
@@ -23,6 +24,8 @@ return new class extends Migration
             $table->string('payment_type')->default('efectivo');
             $table->string('payment_status')->default('pagado');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

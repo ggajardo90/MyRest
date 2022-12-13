@@ -7,8 +7,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-warning">
-                            <h3 class="card-title text-dark">Productos</h3>
-                            <p class="card-category text-dark">Productos registrados en el sistema</p>
+                            <h3 class="card-title text-dark">Reportes de ventas</h3>
+                            <p class="card-category text-dark">Consulta los reportes de ventas</p>
                         </div>
 
                         <div class="card-body">
@@ -23,7 +23,7 @@
                                     <input type="date" name="to" class="form-control" id="to">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-warning">
                                         Mostrar el informe
                                     </button>
                                 </div>
@@ -49,6 +49,7 @@
                                                 <th scope="col">Total</th>
                                                 <th scope="col">Metodo de pago</th>
                                                 <th scope="col">Estado de pago</th>
+                                                <th scope="col">Fecha de venta</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -82,6 +83,7 @@
                                                     <td>{{ $sale->total }}</td>
                                                     <td>{{ $sale->payment_type }}</td>
                                                     <td>{{ $sale->payment_status }}</td>
+                                                    <td>{{ $sale->created_at }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -96,7 +98,7 @@
                                     @csrf
                                     <input type="hidden" value="{{ $startDate }}" name="from">
                                     <input type="hidden" value="{{ $endDate }}" name="to">
-                                    <button type="submit" class="btn btn-danger">Exportar a excel</button>
+                                    <button type="submit" class="btn btn-success">Exportar a excel</button>
 
                                 </form>
                             </div>

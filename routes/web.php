@@ -19,7 +19,6 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::get('producto', [App\Http\Controllers\ProductoController::class, 'index'])->name('producto.index')->middleware(['can:producto.index', 'auth']);
 Route::get('categoria', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categoria.index')->middleware(['can:categoria.index', 'auth']);
 Route::get('tables', [App\Http\Controllers\TableController::class, 'index'])->name('tables.index')->middleware(['can:tables.index', 'auth']);

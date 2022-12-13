@@ -23,7 +23,7 @@ class CategoriaFactory extends Factory
             'slug' => Str::slug($name),
             'descripcion' => $this->faker->paragraph(1),
             'imagen' => 'categorydefault.png',
-            'activa' => round(random_int(0, 1))
+            'activa' => 1
         ];
     }
 }

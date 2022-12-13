@@ -27,7 +27,7 @@ class ProductoFactory extends Factory
             'stock' => round(random_int(1, 20)),
             'descripcion' => $this->faker->paragraph(1),
             'imagen' => 'productodefault.png',
-            'activo' => round(random_int(0, 1))
+            'activo' => 1
         ];
     }
 }

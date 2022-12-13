@@ -22,7 +22,7 @@ class TableFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name),
-            'status' => round(random_int(0, 1))
+            'status' => 0
         ];
     }
 }

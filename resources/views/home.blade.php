@@ -17,17 +17,53 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">content_copy</i>
+                                <i class="material-icons">menu_book</i>
                             </div>
-                            <p class="card-category">Espacio usado</p>
-                            <h3 class="card-title">49/50
-                                <small>GB</small>
+                            <p class="card-category">Categorias registradas en el sistema</p>
+                            <h3 class="card-title">{{ $categorias }}
+                                <small>Categorias</small>
                             </h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons text-danger">warning</i>
-                                <a href="#pablo">Consigue más espacio...</a>
+                                <i class="material-icons">visibility</i>
+                                <a href="{{ route('categoria.index') }}">Ver categorias</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">table_restaurant</i>
+                            </div>
+                            <p class="card-category">Productos registrados en el sistema</p>
+                            <h3 class="card-title">{{ $productos }} Productos</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">visibility</i>
+                                <a href="{{ route('productos.index') }}">Ver productos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">group</i>
+                            </div>
+                            <p class="card-category">Usuarios registrados en el sistema</p>
+                            <h3 class="card-title">{{ $users }} Usuarios</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">visibility</i>
+                                <a href="{{ route('users.index') }}">Ver usuarios</a>
                             </div>
                         </div>
                     </div>
@@ -38,44 +74,13 @@
                             <div class="card-icon">
                                 <i class="material-icons">store</i>
                             </div>
-                            <p class="card-category">Ingresos</p>
-                            <h3 class="card-title">$34,245</h3>
+                            <p class="card-category">Ventas</p>
+                            <h3 class="card-title">${{ number_format($sales, 0, ',', '.') }}</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">date_range</i> Últimas 24 horas
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-danger card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">info_outline</i>
-                            </div>
-                            <p class="card-category">Problemas resueltos</p>
-                            <h3 class="card-title">75</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">local_offer</i> Rastreado desde Github
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                            <div class="card-icon">
-                                <i class="fa fa-twitter"></i>
-                            </div>
-                            <p class="card-category">Seguidores</p>
-                            <h3 class="card-title">+245</h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Recién actualizado
+                                <i class="material-icons">visibility</i>
+                                <a href="{{ route('sales.index') }}">Ver ventas</a>
                             </div>
                         </div>
                     </div>

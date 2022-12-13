@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('producto_sale', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("producto_id");
+            $table->integer('quantity');
             $table->unsignedBigInteger("sale_id");
             $table->timestamps();
+
+            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 
