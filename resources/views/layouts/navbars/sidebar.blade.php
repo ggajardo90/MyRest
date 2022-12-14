@@ -16,7 +16,7 @@
                 </a>
             </li>
 
-            @can('sales.index')
+            @can('sales.create')
                 <li class="nav-item{{ $activePage == 'sales' ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('sales.create') }}">
                         <i class="material-icons">local_grocery_store</i>

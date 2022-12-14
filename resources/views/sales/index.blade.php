@@ -87,8 +87,8 @@
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button type="submit" class="btn btn-just-icon btn-danger"><i
-                                                                class="fa fa-fw fa-trash"></i></button>
+                                                        {{-- <button type="submit" class="btn btn-just-icon btn-danger"><i
+                                                                class="fa fa-fw fa-trash"></i></button> --}}
 
                                                     </form>
                                                 </td>

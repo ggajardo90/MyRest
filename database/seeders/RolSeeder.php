@@ -41,18 +41,21 @@ class RolSeeder extends Seeder
             ['name' => 'tables.index'],         //17
             ['name' => 'tables.create'],        //18
             ['name' => 'tables.edit'],          //19
-            ['name' => 'tables.show'],          //20
-            ['name' => 'tables.update'],        //21
-            ['name' => 'tables.destroy'],       //22
-            ['name' => 'perfil.edit'],          //17
-            ['name' => 'perfil.editRole'],      //18
+            ['name' => 'tables.update'],        //20
+            ['name' => 'tables.destroy'],       //21
+            ['name' => 'sales.index'],          //22
+            ['name' => 'sales.create'],         //23
+            ['name' => 'sales.edit'],           //24
+
+            ['name' => 'perfil.edit'],          //23
+            ['name' => 'perfil.editRole'],      //24
         );
 
         foreach($permisos as $permiso){
             Permission::create($permiso);
         }
 
-        $roleUser->syncPermissions([1,6,17]);
+        $roleUser->syncPermissions([1,6,17,22,23,24]);
 
     }
 }

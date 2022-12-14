@@ -1,35 +1,35 @@
 <div class="row">
     {{ Form::label('categoria_id', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::select('categoria_id', $categorias, $producto->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una categoria']) }}
+        {{ Form::select('categoria_id', $categorias, $producto->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una categoria', 'required' => 'required']) }}
         {!! $errors->first('categoria_id', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('nombre', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::text('nombre', old('nombre', $producto->nombre), ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre']) }}
+        {{ Form::text('nombre', old('nombre', $producto->nombre), ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre', 'required' => 'required']) }}
         {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('precio', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::number('precio', $producto->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese precio']) }}
+        {{ Form::number('precio', $producto->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese precio', 'required' => 'required']) }}
         {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('descripcion', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese descripcion']) }}
+        {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese descripcion', 'required' => 'required']) }}
         {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('stock', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::number('stock', $producto->stock, ['class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese stock']) }}
+        {{ Form::number('stock', $producto->stock, ['class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese stock', 'required' => 'required']) }}
         {!! $errors->first('stock', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>

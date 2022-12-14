@@ -26,6 +26,9 @@ class ReportController extends Controller
         $this->validate($request, [
             "from" => "required",
             "to" => "required"
+        ], [
+            'from.required' => 'Ingrese la fecha de inicio',
+            'to.required' => 'Ingrese la fecha de termino',
         ]);
         $startDate = date("Y-m-d H:i:s", strtotime($request->from . "00:00:00"));
         $endDate = date("Y-m-d H:i:s", strtotime($request->to . "23:59:59"));

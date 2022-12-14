@@ -80,10 +80,10 @@
                                                             @endcan
                                                             @csrf
                                                             @method('DELETE')
-                                                            @can('producto.destroy')
+                                                            {{-- @can('producto.destroy')
                                                                 <button type="submit" class="btn btn-just-icon btn-danger"><i
                                                                         class="fa fa-fw fa-trash"></i></button>
-                                                            @endcan
+                                                            @endcan --}}
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -94,10 +94,10 @@
                                 <div class="card-footer mr-auto">
                                     {!! $productos->links() !!}
                                     <p>
-                                        <button class="btn btn-warning" type="button" data-bs-toggle="collapse"
+                                        {{-- <button class="btn btn-warning" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collimgprod" aria-expanded="false" aria-controls="collimgprod">
                                             Ver productos con imagenes
-                                        </button>
+                                        </button> --}}
                                     </p>
                                 </div>
 
@@ -149,10 +149,10 @@
                                                         @endcan
 
                                                         @method('DELETE')
-                                                        @can('producto.destroy')
+                                                        {{-- @can('producto.destroy')
                                                             <button type="submit" class="btn btn-danger btn-sm"><i
                                                                     class="fa fa-fw fa-trash"></i></button>
-                                                        @endcan
+                                                        @endcan --}}
                                                         @csrf
                                                     </form>
                                                 </div>

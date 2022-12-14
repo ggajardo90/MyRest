@@ -142,7 +142,6 @@ class SaleController extends Controller
             'total' => 'required',
             'payment_type' => 'required',
             'payment_status' => 'required'
-            
         ]);
 
         $sale->user_id = $request->user_id;
@@ -155,11 +154,16 @@ class SaleController extends Controller
         $sale->update();
         $sale->productos()->sync($request->producto_id);
         $sale->tables()->sync($request->table_id);
+        if ($request->payment_status == 'pagado') {
+            $sale->tables()->update([
+                'status' => 0
+            ]);
+        }
         return redirect()->back()->with([
             'success' => 'Producto actualizado correctamente'
         ]);
     }
-    
+
 
     public function cerrarmesa(Sale $sale)
     {

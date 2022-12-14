@@ -16,11 +16,18 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="from">Fecha de inicio</label>
-                                    <input type="date" name="from" class="form-control" id="from">
+                                    <input type="date" name="from"
+                                        class="form-control @error('from') is-invalid @enderror" id="from">
+                                    @error('from')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="from">Fecha de termino</label>
-                                    <input type="date" name="to" class="form-control" id="to">
+                                    <input type="date" name="to" class="form-control @error('from') is-invalid @enderror" id="to">
+                                    @error('to')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-warning">

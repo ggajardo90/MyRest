@@ -17,7 +17,7 @@
 <div class="row">
     {{ Form::label('imagen', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::file('imagen', ['accept' => 'image/*' . ($errors->has('imagen') ? ' is-invalid' : '')]) }}
+        {{ Form::file('imagen', ['accept' => 'image/*' . ($errors->has('imagen') ? ' is-invalid' : ''), 'required' => 'required']) }}
         {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 </div>

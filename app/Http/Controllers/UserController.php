@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\User;
 use App\Http\Requests;
-use Nette\Utils\Image;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use App\Actions\Fortify\CreateNewUser;
+use Image;
 
 class UserController extends Controller
 {

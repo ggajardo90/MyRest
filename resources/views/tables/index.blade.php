@@ -63,10 +63,10 @@
                                                     @endcan
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('tables.destroy')
+                                                    {{-- @can('tables.destroy')
                                                         <button type="submit" class="btn btn-just-icon btn-danger"><i
                                                                 class="fa fa-trash"></i></button>
-                                                    @endcan
+                                                    @endcan --}}
                                                 </form>
                                             </td>
                                         </tr>

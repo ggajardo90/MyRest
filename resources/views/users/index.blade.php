@@ -57,9 +57,9 @@
                                                             href="{{ route('users.show', $user->id) }}"><i
                                                                 class="fa fa-eye"></i></a>
                                                         @csrf
-                                                        @method('DELETE')
+                                                        {{-- @method('DELETE')
                                                         <button type="submit" class="btn btn-just-icon btn-danger"><i
-                                                                class="fa fa-trash"></i></button>
+                                                                class="fa fa-trash"></i></button> --}}
                                                     </form>
                                                 </td>
                                             </tr>

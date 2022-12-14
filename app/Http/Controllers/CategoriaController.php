@@ -52,7 +52,7 @@ class CategoriaController extends Controller
         $this->validate($request, [
             'nombre' => 'required',
             'descripcion' => 'required',
-            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'imagen' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
             'activa' => 'required',
         ]);
         if ($request->hasFile('imagen')) {

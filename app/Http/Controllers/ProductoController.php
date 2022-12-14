@@ -58,7 +58,7 @@ class ProductoController extends Controller
             'precio' => 'required|numeric',
             'descripcion' => 'required',
             'stock' => 'required|numeric',
-            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'imagen' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
             'activo' => 'required|boolean'
         ]);
 
@@ -122,7 +122,7 @@ class ProductoController extends Controller
             'precio' => 'required|numeric',
             'descripcion' => 'required',
             'stock' => 'required|numeric',
-            'imagen' => 'image|mimes:png,jpg,jpeg|max:2048',
+            'imagen' => 'image|mimes:png,jpg,jpeg,webp|max:2048',
             'activo' => 'required|boolean'
         ]);
 
