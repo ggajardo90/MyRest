@@ -154,10 +154,10 @@
                                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                     @foreach ($categorias as $categoria)
                                         <li class="nav-item">
-                                            <a class="nav-link mr-1 {{ $categoria->slug === 'neque' ? 'active show' : '' }}"
+                                            <a class="nav-link mr-1 {{ $categoria->slug === 'neque' ? 'active show' : '' }} catcheckbox"
                                                 data-toggle="pill" id="{{ $categoria->slug }}-tab"
                                                 href="#{{ $categoria->slug }}" role="tab"
-                                                aria-controls="{{ $categoria->slug }}" aria-selected="true">
+                                                aria-controls="{{ $categoria->slug }}" aria-selected="true" data-id="{{ $categoria->id}}">
                                                 {{ $categoria->nombre }}
                                             </a>
                                         </li>
@@ -184,8 +184,9 @@
                                                         @foreach ($categoria->productos as $producto)
                                                             <tr>
                                                                 <td>
-                                                                    <input type="checkbox" name="producto_id[]"
-                                                                        id="producto" value="{{ $producto->id }}">
+                                                                    <input class="productocheckbox" type="checkbox"
+                                                                        name="producto_id[]" id="producto"
+                                                                        value="{{ $producto->id }}">
                                                                 </td>
                                                                 <td>
                                                                     <div class="img-container">
@@ -346,6 +347,8 @@
 
 @push('js')
     <script>
+        const categorias = @json($categorias)
+
         function calcular() {
             try {
                 var a = parseFloat(document.getElementById("quantity").value) || 0,
@@ -359,6 +362,41 @@
                 document.getElementById("change").value = vuelto;
             } catch (e) {}
         }
+
+        var catid;
+
+        $('.catcheckbox').on('click', function() {
+
+            catid = $(this).attr("data-id");
+            if ($(this).is('')) {
+                alert('Guardando información de ' + catid + '...');
+
+            } else {
+                alert('Desguardando información de ' + catid + '...');
+            }
+            console.log($(this).val())
+        })
+
+
+        $('.productocheckbox').on('click', function() {
+            console.log(catid)
+            const {productos} = categorias.find(cat => cat.id == catid)
+            console.log(productos)
+            var prodid = $(this).val()
+            if ($(this).is(':checked')) {
+
+
+            } else {
+                alert('Desguardando información de ' + prodid + '...');
+            }
+            console.log($(this).val())
+        })
+
+
+
+
+
+        console.log(categorias)
 
         window.addEventListener('DOMContentLoaded', () => {
             console.log('test');
