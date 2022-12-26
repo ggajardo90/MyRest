@@ -54,6 +54,9 @@ class TableController extends Controller
         $this->validate($request, [
             "name" => "required",
             "status" => "required|boolean"
+        ], [
+            'name.required' => 'Ingrese el nombre de la mesa',
+            'status.required' => 'Selecciona el estado de la mesa'
         ]);
         $name = $request->name;
         Table::create([

@@ -26,7 +26,7 @@ class CategoriaController extends Controller
     public function index()
     {
         return view('categoria.index')->with([
-            'categorias' => Categoria::paginate(5)
+            'categorias' => Categoria::all()
         ]);
     }
 
@@ -50,11 +50,17 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nombre' => 'required',
+            'nombre' => 'required|unique:categorias',
             'descripcion' => 'required',
             'imagen' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
-            'activa' => 'required',
+            'activa' => 'required|boolean',
+        ], [
+            'nombre.required' => 'Ingresa un nombre para la categoria',
+            'nombre.unique' => 'Esa categoria ya existe',
+            'descripcion.required' => 'Agrega una descripción para la categoria',
+            'imagen.required' => 'Agrega un archivo de imagen (png, jpg, jpeg, webp) | Max 2MB '
         ]);
+        
         if ($request->hasFile('imagen')) {
             $file = $request->imagen;
             $imageName = time() . '.' . $file->getClientOriginalExtension();
@@ -113,7 +119,7 @@ class CategoriaController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'imagen' => 'image|mimes:png,jpg,jpeg,webp|max:2048',
-            'activa' => 'required',
+            'activa' => 'required|boolean',
         ]);
 
         if ($request->hasFile('imagen')) {
@@ -122,6 +128,7 @@ class CategoriaController extends Controller
             Image::make($file)->resize(300, 300)->save(public_path('img/categorias/' . $imageName));
             $categoria->imagen = $imageName;
         }
+
         $nombre = $request->nombre;
         $categoria->update([
             'nombre' => $nombre,

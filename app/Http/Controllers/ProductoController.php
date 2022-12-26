@@ -27,7 +27,7 @@ class ProductoController extends Controller
     public function index()
     {
         return view('producto.index')->with([
-            "productos" => Producto::paginate(10)
+            "productos" => Producto::all()
         ]);
     }
 
@@ -54,12 +54,20 @@ class ProductoController extends Controller
     {
         $this->validate($request, [
             'categoria_id' => 'required|numeric',
-            'nombre' => 'required',
+            'nombre' => 'required|unique:productos',
             'precio' => 'required|numeric',
             'descripcion' => 'required',
             'stock' => 'required|numeric',
             'imagen' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
             'activo' => 'required|boolean'
+        ] , [
+            'categoria_id.required' => 'Selecciona una categoria para el producto',
+            'nombre.required' => 'Ingresa un nombre para el producto',
+            'nombre.unique' => 'Ese producto ya existe',
+            'precio.required' => 'Ingresa el precio del producto',
+            'descripcion.required' => 'Agrega una descripción para el producto',
+            'stock.required' => 'Ingresa el stock del producto',
+            'imagen.required' => 'Agrega un archivo de imagen (png, jpg, jpeg, webp) | Max 2MB '
         ]);
 
         if ($request->hasFile('imagen')) {

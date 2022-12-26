@@ -18,7 +18,7 @@ class ProductoFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->lastName();
+        $name = $this->faker->name();
         return [
             'categoria_id' => Categoria::all()->random()->id,
             'nombre' => $name,

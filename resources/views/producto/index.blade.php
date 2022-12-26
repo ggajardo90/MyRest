@@ -27,79 +27,76 @@
                                         </div>
                                     @endif
                                 @endcan
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-hover" id="tableprod">
+                                                <thead class="text-primary">
+                                                    <tr>
+                                                        {{-- <th>ID</th> --}}
+                                                        <th>Imagen</th>
+                                                        <th>Categoria</th>
+                                                        <th>Nombre</th>
+                                                        <th>Precio</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Stock</th>
+                                                        <th class="text-center">Disponible</th>
+                                                        <th class="text-right">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($productos as $producto)
+                                                        <tr>
+                                                            {{-- <td>{{ $producto->id }}</td> --}}
+                                                            <td>
+                                                                <div class="img-container">
+                                                                    <img src="/img/productos/{{ $producto->imagen }}"
+                                                                        style="width: 100px; heigth: 100px" rel="nofollow"
+                                                                        alt="imagen" class="card-img-top img-fluid">
+                                                                </div>
+                                                            </td>
+                                                            <td>{{ $producto->categoria->nombre }}</td>
+                                                            <td>{{ $producto->nombre }}</td>
+                                                            <td><small>$</small>{{ number_format($producto->precio, 0, ',','.') }}</td>
+                                                            <td>{{ $producto->descripcion }}</td>
+                                                            <td>{{ $producto->stock }}</td>
 
-                                <div class="table-responsive-sm">
-                                    <table class="table table-hover">
-                                        <thead class="text-primary">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Categoria</th>
-                                                <th>Nombre</th>
-                                                <th>Precio</th>
-                                                <th>Descripcion</th>
-                                                <th>Stock</th>
-                                                <th>Imagen</th>
-                                                <th class="text-center">Disponible</th>
-                                                <th class="text-right">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($productos as $producto)
-                                                <tr>
-                                                    <td>{{ $producto->id }}</td>
-                                                    <td>{{ $producto->categoria->nombre }}</td>
-                                                    <td>{{ $producto->nombre }}</td>
-                                                    <td>{{ $producto->precio }}</td>
-                                                    <td>{{ $producto->descripcion }}</td>
-                                                    <td>{{ $producto->stock }}</td>
-                                                    <td>
-                                                        <div class="img-container">
-                                                            <img src="/img/productos/{{ $producto->imagen }}"
-                                                                style="width: 100px; heigt: 100px" rel="nofollow" alt="imagen"
-                                                                class="card-img-top img-fluid">
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @if ($producto->activa)
-                                                            <i class="material-icons text-danger">cancel</i>
-                                                        @else
-                                                            <i class="material-icons text-success">check_circle</i>
-                                                        @endif
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <form action="{{ route('productos.destroy', $producto->slug) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
-                                                            <a class="btn btn-just-icon btn-primary "
-                                                                href="{{ route('productos.show', $producto->slug) }}"><i
-                                                                    class="fa fa-eye"></i></a>
-                                                            @can('producto.edit')
-                                                                <a class="btn btn-just-icon btn-success"
-                                                                    href="{{ route('productos.edit', $producto->slug) }}"><i
-                                                                        class="fa fa-fw fa-edit"></i></a>
-                                                            @endcan
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            {{-- @can('producto.destroy')
-                                                                <button type="submit" class="btn btn-just-icon btn-danger"><i
-                                                                        class="fa fa-fw fa-trash"></i></button>
-                                                            @endcan --}}
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                                            <td class="text-center">
+                                                                @if ($producto->activa)
+                                                                    <i class="material-icons text-danger">cancel</i>
+                                                                @else
+                                                                    <i class="material-icons text-success">check_circle</i>
+                                                                @endif
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <form action="{{ route('productos.destroy', $producto->slug) }}"
+                                                                    method="POST"
+                                                                    onsubmit="return confirm('¿Estas Seguro que quieres Eliminar una categoria?')">
+                                                                    <a class="btn btn-just-icon btn-primary "
+                                                                        href="{{ route('productos.show', $producto->slug) }}"><i
+                                                                            class="fa fa-eye"></i></a>
+                                                                    @can('producto.edit')
+                                                                        <a class="btn btn-just-icon btn-success"
+                                                                            href="{{ route('productos.edit', $producto->slug) }}"><i
+                                                                                class="fa fa-fw fa-edit"></i></a>
+                                                                    @endcan
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    {{-- @can('producto.destroy')
+                                                                        <button type="submit" class="btn btn-just-icon btn-danger"><i
+                                                                                class="fa fa-fw fa-trash"></i></button>
+                                                                    @endcan --}}
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-footer mr-auto">
-                                    {!! $productos->links() !!}
-                                    <p>
-                                        {{-- <button class="btn btn-warning" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collimgprod" aria-expanded="false" aria-controls="collimgprod">
-                                            Ver productos con imagenes
-                                        </button> --}}
-                                    </p>
-                                </div>
+
+
 
                             </div>
                         </div>
@@ -120,7 +117,7 @@
 
                                                 <div class="img-container text-center">
                                                     <img src="/img/productos/{{ $producto->imagen }}"
-                                                        style="width: 300px; heigt: 300px" rel="nofollow" alt="imagen"
+                                                        style="width: 300px; heigth: 300px" rel="nofollow" alt="imagen"
                                                         class="card-img-top img-fluid">
                                                 </div>
 
@@ -162,9 +159,7 @@
 
                                 </div>
                             </div>
-                            <div class="card-footer mr-auto">
-                                {!! $productos->links() !!}
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -172,3 +167,32 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#tableprod').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar " +
+                        `<select class="custom-select custom-select-sm form-control form-control-sm text-center">
+                            <option value = '10'>10</option>
+                            <option value = '25'>25</option>
+                            <option value = '50'>50</option>
+                            <option value = '100'>100</option>
+                            <option value = '-1'>Todos</option>
+                        </select>` +
+                        " productos por pagina",
+                    "zeroRecords": "No se encontró nada - lo siento",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        'next': 'Siguiente',
+                        'previous': 'Anterior'
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

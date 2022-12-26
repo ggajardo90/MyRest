@@ -1,43 +1,43 @@
 <div class="row">
     {{ Form::label('categoria_id', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::select('categoria_id', $categorias, $producto->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una categoria', 'required' => 'required']) }}
-        {!! $errors->first('categoria_id', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::select('categoria_id', $categorias, $producto->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione una categoria']) }}
+        {!! $errors->first('categoria_id', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('nombre', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::text('nombre', old('nombre', $producto->nombre), ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre', 'required' => 'required']) }}
-        {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::text('nombre', old('nombre', $producto->nombre), ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre']) }}
+        {!! $errors->first('nombre', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('precio', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::number('precio', $producto->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese precio', 'required' => 'required']) }}
-        {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::number('precio', $producto->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese precio']) }}
+        {!! $errors->first('precio', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('descripcion', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese descripcion', 'required' => 'required']) }}
-        {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese descripcion']) }}
+        {!! $errors->first('descripcion', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('stock', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
-        {{ Form::number('stock', $producto->stock, ['class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese stock', 'required' => 'required']) }}
-        {!! $errors->first('stock', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::number('stock', $producto->stock, ['class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese stock']) }}
+        {!! $errors->first('stock', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
     {{ Form::label('imagen', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
         {{ Form::file('imagen', ['accept' => 'image/*' . ($errors->has('imagen') ? ' is-invalid' : '')]) }}
-        {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
+        {!! $errors->first('imagen', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
@@ -56,6 +56,6 @@
             <br/>
             {{ Form::radio('activo', '0', false) }} No
         @endif
-        {!! $errors->first('activo', '<div class="invalid-feedback">:message</div>') !!}
+        {!! $errors->first('activo', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>

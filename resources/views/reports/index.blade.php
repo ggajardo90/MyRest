@@ -19,14 +19,15 @@
                                     <input type="date" name="from"
                                         class="form-control @error('from') is-invalid @enderror" id="from">
                                     @error('from')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="error text-danger pl-3"><strong>{{ $message }}</strong></div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="from">Fecha de termino</label>
-                                    <input type="date" name="to" class="form-control @error('from') is-invalid @enderror" id="to">
+                                    <input type="date" name="to"
+                                        class="form-control @error('from') is-invalid @enderror" id="to">
                                     @error('to')
-                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        <div class="error text-danger pl-3"><strong>{{ $message }}</strong></div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -48,7 +49,7 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">ID</th>
+                                                {{-- <th scope="col">ID</th> --}}
                                                 <th scope="col">Producto/s</th>
                                                 <th scope="col">Mesa</th>
                                                 <th scope="col">Mesero</th>
@@ -62,7 +63,7 @@
                                         <tbody>
                                             @foreach ($sales as $sale)
                                                 <tr>
-                                                    <td>{{ $sale->id }}</td>
+                                                    {{-- <td>{{ $sale->id }}</td> --}}
                                                     <td>
                                                         @foreach ($sale->productos()->where('sale_id', $sale->id)->get() as $producto)
                                                             <h5 class="font-weight-bold">

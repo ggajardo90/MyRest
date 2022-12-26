@@ -32,7 +32,7 @@
                                 <table class="table table-hover">
                                     <thead class="text-primary">
                                         <tr>
-                                            <th>ID</th>
+                                            {{-- <th>ID</th> --}}
                                             <th>Producto/s</th>
                                             <th>Mesa</th>
                                             <th>Mesero</th>
@@ -46,7 +46,7 @@
                                     <tbody>
                                         @foreach ($sales as $sale)
                                             <tr>
-                                                <td>{{ $sale->id }}</td>
+                                                {{-- <td>{{ $sale->id }}</td> --}}
                                                 <td>
                                                     @foreach ($sale->productos()->where('sale_id', $sale->id)->get() as $producto)
                                                         <h5 class="font-weight-bold">

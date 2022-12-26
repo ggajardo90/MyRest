@@ -2,7 +2,7 @@
     {{ Form::label('nombre', '', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-7">
         {{ Form::text('name', $table->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese nombre']) }}
-        {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+        {!! $errors->first('name', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>
 <div class="row">
@@ -21,6 +21,6 @@
             <br/>
             {{ Form::radio('status', '0', false) }} Desocupada
         @endif
-        {!! $errors->first('status', '<div class="invalid-feedback">:message</div>') !!}
+        {!! $errors->first('status', '<div class="error text-danger pl-3"><strong>:message</strong></div>') !!}
     </div>
 </div>

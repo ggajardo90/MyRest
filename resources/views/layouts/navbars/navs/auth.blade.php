@@ -19,14 +19,14 @@
                 </div>
             </form>
             <ul class="navbar-nav">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
                         <i class="material-icons">dashboard</i>
                         <p class="d-lg-none d-md-block">
                             {{ __('Stats') }}
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">

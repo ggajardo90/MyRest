@@ -27,10 +27,10 @@
                                 @endif
                             @endcan
 
-                            <table class="table table-hover table-responsive-sm">
+                            <table class="table table-hover" id="tablatables">
                                 <thead class="text-primary">
                                     <tr>
-                                        <th>ID</th>
+                                        {{-- <th>ID</th> --}}
                                         <th>Nombre</th>
                                         <th class="text-center">Disponible</th>
                                         <th class="text-right">Acciones</th>
@@ -39,7 +39,7 @@
                                 <tbody>
                                     @foreach ($tables as $table)
                                         <tr>
-                                            <td>{{ $table->id }}</td>
+                                            {{-- <td>{{ $table->id }}</td> --}}
                                             <td>{{ $table->name }}</td>
                                             <td class="text-center">
                                                 @if ($table->status)
@@ -83,3 +83,32 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#tablatables').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar " +
+                        `<select class="custom-select custom-select-sm form-control form-control-sm text-center">
+                            <option value = '10'>10</option>
+                            <option value = '25'>25</option>
+                            <option value = '50'>50</option>
+                            <option value = '100'>100</option>
+                            <option value = '-1'>Todos</option>
+                        </select>` +
+                        " mesas por pagina",
+                    "zeroRecords": "No se encontró nada - lo siento",
+                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        'next': 'Siguiente',
+                        'previous': 'Anterior'
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

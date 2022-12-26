@@ -55,7 +55,7 @@
                                     @endif
                                 </div>
                                 <!--finUsername-->
-                                
+
                                 <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -100,8 +100,8 @@
                                             </span>
                                         </div>
                                         <input type="password" name="password_confirmation" id="password_confirmation"
-                                            class="form-control" placeholder="{{ __('Confirmar contraseña...') }}"
-                                            required autocomplete="new-password">
+                                            class="form-control" placeholder="{{ __('Confirmar contraseña...') }}" required
+                                            autocomplete="new-password">
                                     </div>
                                     @if ($errors->has('password_confirmation'))
                                         <div id="password_confirmation-error" class="error text-danger pl-3"
@@ -118,7 +118,7 @@
                                                 <i class="material-icons">groups</i>
                                             </span>
                                         </div>
-                                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','Small')) !!}
+                                        {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'Small']) !!}
                                         @if ($errors->has('rol_confirmation'))
                                             <div id="rol_confirmation-error" class="error text-danger pl-3"
                                                 for="rol_confirmation" style="display: block;">

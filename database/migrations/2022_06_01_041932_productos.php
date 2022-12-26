@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('categoria_id');
             $table->string('nombre');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->decimal('precio', 8, 0);
             $table->integer('stock');
             $table->text('descripcion');

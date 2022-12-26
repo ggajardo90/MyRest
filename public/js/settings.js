@@ -138,11 +138,11 @@ $(document).ready(function() {
               $('body').removeClass('sidebar-mini');
               md.misc.sidebar_mini_active = false;
 
-              $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+              $('.sidebar .sidebar-wrapper').perfectScrollbar();
 
           } else {
 
-              $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+              $('.sidebar .sidebar-wrapper').perfectScrollbar('destroy');
 
               setTimeout(function() {
               $('body').addClass('sidebar-mini');

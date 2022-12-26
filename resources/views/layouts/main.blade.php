@@ -19,6 +19,7 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/material-dashboard.css?v=2.1.1') }}" rel="stylesheet" />
@@ -35,12 +36,12 @@
     @endguest
 
     <!--   Core JS Files   -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{{ asset('js/core/jquery.min.js') }}"></script>
     <script src="{{ asset('js/core/popper.min.js') }}"></script>
     <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
 
     <!-- Plugin for the Perfect Scrollbar -->
-    {{-- <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script> --}}
+    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
 
     <!-- Plugin for the momentJs  -->
     <script src="{{ asset('js/plugins/moment.min.js') }}"></script>
@@ -54,16 +55,20 @@
     <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="{{ asset('js/plugins/jquery.bootstrap-wizard.js') }}"></script>
 
-    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <!-- Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
     <script src="{{ asset('js/plugins/bootstrap-selectpicker.js') }}"></script>
 
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <!-- Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="{{ asset('js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
 
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-    <script src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script> --}}
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.min.js"></script>
 
-    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <!-- Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
     <script src="{{ asset('js/plugins/bootstrap-tagsinput.js') }}"></script>
 
     <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->

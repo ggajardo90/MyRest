@@ -61,6 +61,15 @@ class SaleController extends Controller
             'total' => 'required',
             'payment_status' => 'required',
             'payment_type' => 'required'
+        ], [
+            'table_id.required' => 'Debes seleccionar una mesa',
+            'producto_id.required' => 'Selecciona al menos un producto',
+            'user_id.required' => 'Debes seleccionar una mesa',
+            'quantity.required' => 'Debes agregar la cantidad',
+            'price.required' => 'El precio no puede estar vacio',
+            'total.required' => 'El total no puede estar vacio',
+            'payment_status.required' => 'Debes seleccionar el estado del pago',
+            'payment_type.required' => 'Debes seleccionar el metodo de pago'
         ]);
 
         $sale = new Sale();
