@@ -101,7 +101,7 @@ class SaleController extends Controller
         }
 
         return redirect()->back()->with([
-            'success' => 'Producto agregado correctamente'
+            'success' => 'Venta registrada correctamente'
         ]);
     }
 
@@ -128,6 +128,7 @@ class SaleController extends Controller
         return view('sales.edit')->with([
             'tables' => $sale->tables()->where('sale_id', $sale->id)->get(),
             'productos' => $sale->productos,
+            "categorias" => Categoria::has('productos')->get(),
             'users' => User::all(),
             'sale' => $sale
         ]);
@@ -144,13 +145,22 @@ class SaleController extends Controller
     {
         $this->validate($request, [
             "table_id" => 'required',
-            "producto_id" => 'required',
+            "producto_id" => '',
             'user_id' => 'required',
             "quantity" => 'required',
             'price' => 'required',
             'total' => 'required',
             'payment_type' => 'required',
             'payment_status' => 'required'
+        ], [
+            'table_id.required' => 'Debes seleccionar una mesa',
+            'producto_id.required' => 'Selecciona al menos un producto',
+            'user_id.required' => 'Debes seleccionar una mesa',
+            'quantity.required' => 'Debes agregar la cantidad',
+            'price.required' => 'El precio no puede estar vacio',
+            'total.required' => 'El total no puede estar vacio',
+            'payment_status.required' => 'Debes seleccionar el estado del pago',
+            'payment_type.required' => 'Debes seleccionar el metodo de pago'
         ]);
 
         $sale->user_id = $request->user_id;
@@ -161,27 +171,25 @@ class SaleController extends Controller
         $sale->payment_type = $request->payment_type;
         $sale->payment_status = $request->payment_status;
         $sale->update();
-        $sale->productos()->sync($request->producto_id);
+        //$sale->productos()->sync($request->producto_id);
+        if ($request->producto_id) {
+            foreach ($request->producto_id as $value) {
+                ProductoSale::create([
+                    'producto_id' => $value,
+                    'quantity' => $request->quantity,
+                    'sale_id' => $sale->id
+                ]);
+            }
+        }
+        
         $sale->tables()->sync($request->table_id);
         if ($request->payment_status == 'pagado') {
             $sale->tables()->update([
                 'status' => 0
             ]);
         }
-        return redirect()->back()->with([
-            'success' => 'Producto actualizado correctamente'
-        ]);
-    }
-
-
-    public function cerrarmesa(Sale $sale)
-    {
-
-        dd($sale);
-        $sale->payment_status = 'pagado';
-        $sale->update();
-        return redirect()->back()->with([
-            'success' => 'Venta registrada'
+        return redirect()->route("sales.create")->with([
+            'success' => 'Venta actualizada con exito'
         ]);
     }
 
@@ -197,9 +205,10 @@ class SaleController extends Controller
         $sale->tables()->update([
             'status' => 0
         ]);
-        $sale->delete();
+        $sale->payment_status = 'pagado';
+        $sale->update();
         return redirect()->back()->with([
-            'success' => 'Producto eliminado correctamente'
+            'success' => 'Venta cerrada correctamente'
         ]);
     }
 }

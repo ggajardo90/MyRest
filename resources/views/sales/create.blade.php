@@ -15,14 +15,24 @@
                                         <p class="card-category text-dark">Fecha
                                             {{ Carbon\Carbon::now()->toDateString() }}</p>
                                     </div>
-                                    <div class="col-sm text-right">
-                                        <a href="{{ route('sales.index') }}" class="btn btn-secondary">
-                                            Todas las ventas
-                                        </a>
-                                    </div>
+                                    @can('sales.index')
+                                        <div class="col-sm text-right">
+                                            <a href="{{ route('sales.index') }}" class="btn btn-secondary">
+                                                Todas las ventas
+                                            </a>
+                                        </div>
+                                    @endcan
                                 </div>
                             </div>
                             <div class="card-body">
+                                @if ($message = Session::get('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong class="text-dark">{{ $message }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
                                 <div class="row">
                                     @foreach ($tables as $table)
                                         <div class="col-sm-3">
@@ -71,7 +81,7 @@
                                                                                                 {{ $producto->nombre }}
                                                                                             </h5>
                                                                                             <h5 class="text-muted">
-                                                                                                ${{ $producto->precio }}
+                                                                                                ${{ number_format($producto->precio, 0, ',', '.') }}
                                                                                             </h5>
                                                                                         @endforeach
                                                                                         <h5 class="font-weight-bold mt-2">
@@ -90,13 +100,14 @@
                                                                                         </h5>
                                                                                         <h5 class="font-weight-bold mt-2">
                                                                                             <span class="badge badge-light">
-                                                                                                Total : {{ $sale->total }}
+                                                                                                Total :
+                                                                                                ${{ number_format($sale->total, 0, ',', '.') }}
                                                                                             </span>
                                                                                         </h5>
                                                                                         <h5 class="font-weight-bold mt-2">
                                                                                             <span class="badge badge-light">
                                                                                                 Vuelto :
-                                                                                                {{ $sale->change }}
+                                                                                                ${{ number_format($sale->change, 0, ',', '.') }}
                                                                                             </span>
                                                                                         </h5>
                                                                                         <h5 class="font-weight-bold mt-2">
@@ -157,7 +168,8 @@
                                             <a class="nav-link mr-1 {{ $categoria->slug === 'neque' ? 'active show' : '' }} catcheckbox"
                                                 data-toggle="pill" id="{{ $categoria->slug }}-tab"
                                                 href="#{{ $categoria->slug }}" role="tab"
-                                                aria-controls="{{ $categoria->slug }}" aria-selected="true" data-id="{{ $categoria->id}}">
+                                                aria-controls="{{ $categoria->slug }}" aria-selected="true"
+                                                data-id="{{ $categoria->id }}">
                                                 {{ $categoria->nombre }}
                                             </a>
                                         </li>
@@ -237,8 +249,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="quantity">Cantidad</label>
-                                            <input type="number" name="quantity" id="quantity" oninput="calcular()"
-                                                class="form-control" value="{{ old('quantity') }}">
+                                            <input type="number" name="quantity" id="quantity" class="form-control"
+                                                value="{{ old('quantity') }}">
                                             @if ($errors->has('quantity'))
                                                 <div id="quantity-error" class="error text-danger pl-3" for="quantity"
                                                     style="display: block;">
@@ -248,8 +260,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="price">Precio</label>
-                                            <input type="number" name="price" id="price" oninput="calcular()"
-                                                class="form-control" value="{{ old('price') }}">
+                                            <input type="number" name="price" id="price" class="form-control"
+                                                value="{{ old('price') }}">
                                             @if ($errors->has('price'))
                                                 <div id="price-error" class="error text-danger pl-3" for="price"
                                                     style="display: block;">
@@ -259,11 +271,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="total">Total</label>
-                                            <input name="total" id="total" class="form-control">
+                                            <input type="number" name="total" id="total" class="form-control"
+                                                value="{{ old('total') }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="total">Paga con</label>
-                                            <input type="number" name="paga" id="paga" oninput="calcular()"
+                                            <label for="pagacon">Paga con</label>
+                                            <input type="number" name="paga" id="paga" oninput="vuelto()"
                                                 class="form-control" value="{{ old('paga') }}">
                                             @if ($errors->has('paga'))
                                                 <div id="paga-error" class="error text-danger pl-3" for="paga"
@@ -273,16 +286,14 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
-                                            <label for="total">Vuelto</label>
+                                            <label for="vuelto">Vuelto</label>
                                             <input type="number" name="change" id="change" class="form-control"
                                                 value="{{ old('change') }}">
                                         </div>
                                         <div class="form-group">
+                                            <label for="payment_type">Metodo de pago</label>
                                             <select name="payment_type" class="form-control">
-                                                <option value="" selected disabled>
-                                                    Metodo de pago
-                                                </option>
-                                                <option value="efectivo">
+                                                <option value="efectivo" selected>
                                                     Efectivo
                                                 </option>
                                                 <option value="tarjeta">
@@ -297,14 +308,12 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
+                                            <label for="payment_status">Metodo de pago</label>
                                             <select name="payment_status" class="form-control">
-                                                <option value="" selected disabled>
-                                                    Estado del pago
-                                                </option>
                                                 <option value="pagado">
                                                     Pagado
                                                 </option>
-                                                <option value="pendiente">
+                                                <option value="pendiente" selected>
                                                     Pendiente
                                                 </option>
                                             </select>
@@ -349,17 +358,15 @@
     <script>
         const categorias = @json($categorias)
 
-        function calcular() {
+        function vuelto() {
             try {
-                var a = parseFloat(document.getElementById("quantity").value) || 0,
-                    b = parseFloat(document.getElementById("price").value) || 0,
+                var total = parseFloat(document.getElementById("total").value) || 0,
                     paga = parseFloat(document.getElementById("paga").value) || 0;
 
-                var total = a * b;
                 var vuelto = paga - total;
 
                 document.getElementById("total").value = total;
-                document.getElementById("change").value = vuelto;
+                document.getElementById("change").value = vuelto || 0;
             } catch (e) {}
         }
 
@@ -368,38 +375,47 @@
         $('.catcheckbox').on('click', function() {
 
             catid = $(this).attr("data-id");
-            if ($(this).is('')) {
-                alert('Guardando información de ' + catid + '...');
-
-            } else {
-                alert('Desguardando información de ' + catid + '...');
-            }
-            console.log($(this).val())
+            console.log("Categoria: ", catid)
         })
 
+        const subtotal = [];
+        const initialValue = 0;
 
         $('.productocheckbox').on('click', function() {
-            console.log(catid)
-            const {productos} = categorias.find(cat => cat.id == catid)
-            console.log(productos)
+            const {
+                productos
+            } = categorias.find(cat => cat.id == catid)
+
             var prodid = $(this).val()
+
             if ($(this).is(':checked')) {
-
-
+                const producto = productos.find(prod => prod.id == prodid)
+                subtotal.push(parseInt(producto.precio))
+                console.log(subtotal)
             } else {
-                alert('Desguardando información de ' + prodid + '...');
+                subtotal.pop()
+                console.log(subtotal)
             }
-            console.log($(this).val())
+
+            calcular(subtotal)
         })
 
+        function calcular(subtotal) {
+            try {
+                const sumWithInitial = subtotal.reduce((
+                    accumulator, currentValue
+                ) => accumulator + currentValue, initialValue);
+                document.getElementById("price").value = sumWithInitial;
 
+                var quantity = parseFloat(document.getElementById("quantity").value) || 1,
+                    price = parseFloat(document.getElementById("price").value) || 0;
 
+                var total = quantity * price;
 
-
-        console.log(categorias)
-
-        window.addEventListener('DOMContentLoaded', () => {
-            console.log('test');
-        });
+                document.getElementById("total").value = total;
+                //document.getElementById("change").value = vuelto;
+            } catch (e) {}
+        }
+        // console.log(categorias)
     </script>
 @endpush

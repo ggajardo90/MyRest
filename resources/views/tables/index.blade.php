@@ -73,9 +73,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="card-footer mr-auto">
+                            {{-- <div class="card-footer mr-auto">
                                 {{ $tables->links() }}
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

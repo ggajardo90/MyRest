@@ -54,7 +54,7 @@ class RolSeeder extends Seeder
             Permission::create($permiso);
         }
 
-        $roleUser->syncPermissions([1,6,17,22,23,24]);
+        $roleUser->syncPermissions([1,6,17,23,24]);
 
     }
 }

@@ -70,7 +70,7 @@
                                                                 {{ $producto->nombre }}
                                                             </h5>
                                                             <h5 class="text-muted">
-                                                                ${{ $producto->precio }}
+                                                                ${{ number_format($producto->precio, 0, ',', '.') }}
                                                             </h5>
                                                         @endforeach
                                                     </td>
@@ -88,7 +88,7 @@
                                                     </td>
                                                     <td>{{ $sale->user->name }}</td>
                                                     <td>{{ $sale->quantity }}</td>
-                                                    <td>{{ $sale->total }}</td>
+                                                    <td>${{ number_format($sale->total, 0, ',', '.') }}</td>
                                                     <td>{{ $sale->payment_type }}</td>
                                                     <td>{{ $sale->payment_status }}</td>
                                                     <td>{{ $sale->created_at }}</td>

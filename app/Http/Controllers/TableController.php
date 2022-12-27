@@ -6,7 +6,6 @@ use App\Models\Table;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Image;
 
 /**
  * Class TableController
@@ -27,7 +26,7 @@ class TableController extends Controller
     {
         //
         return view("tables.index")->with([
-            "tables" => Table::paginate(10)
+            "tables" => Table::all()
         ]);
     }
 
@@ -106,6 +105,9 @@ class TableController extends Controller
         $this->validate($request, [
             "name" => "required",
             "status" => "required|boolean"
+        ], [
+            'name.required' => 'Ingrese el nombre de la mesa',
+            'status.required' => 'Selecciona el estado de la mesa'
         ]);
         $name = $request->name;
         $table->update([
@@ -115,7 +117,7 @@ class TableController extends Controller
         ]);
 
         return redirect()->route("tables.index")
-            ->with("success", "Table actualizada correctamente");
+            ->with("success", "Mesa actualizada correctamente");
     }
 
     /**

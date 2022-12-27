@@ -53,32 +53,27 @@
                                                             {{ $producto->nombre }}
                                                         </h5>
                                                         <h5 class="text-muted">
-                                                            ${{ $producto->precio }}
+                                                            ${{ number_format($producto->precio, 0, ',', '.') }}
                                                         </h5>
                                                     @endforeach
                                                 </td>
                                                 <td>
                                                     @foreach ($sale->tables()->where('sale_id', $sale->id)->get() as $table)
-                                                        <div
-                                                            class="mb-1 d-flex flex-column justify-content-center align-items-center">
-                                                            <i class="material-icons fa-3x">table_restaurant</i>
-                                                            <span class="mt-2 text-muted">
-                                                                {{ $table->name }}
-                                                            </span>
-
-                                                        </div>
+                                                        <span class="mt-2 text-muted">
+                                                            {{ $table->name }}
+                                                        </span>
                                                     @endforeach
                                                 </td>
                                                 <td>{{ $sale->user->name }}</td>
                                                 <td>{{ $sale->quantity }}</td>
-                                                <td>{{ $sale->total }}</td>
+                                                <td>${{ number_format($sale->total, 0, ',', '.') }}</td>
                                                 <td>{{ $sale->payment_type }}</td>
                                                 <td>{{ $sale->payment_status }}</td>
                                                 <td>{{ $sale->created_at }}</td>
 
                                                 <td class="text-right">
                                                     <form action="{{ route('sales.destroy', $sale->id) }}" method="POST"
-                                                        onsubmit="return confirm('¿Estas seguro que quieres eliminar esa venta?')">
+                                                        onsubmit="return confirm('¿Estas seguro que quieres cerrar esta venta?')">
 
                                                         <a class="btn btn-just-icon btn-success"
                                                             href="{{ route('sales.edit', $sale->id) }}"><i
@@ -87,8 +82,8 @@
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        {{-- <button type="submit" class="btn btn-just-icon btn-danger"><i
-                                                                class="fa fa-fw fa-trash"></i></button> --}}
+                                                        <button type="submit" class="btn btn-just-icon btn-danger"><i
+                                                                class="fa fa-fw fa-trash"></i></button>
 
                                                     </form>
                                                 </td>
